@@ -2,73 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-               maximum-scale=1.0, user-scalable=no">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
 <title>Happy Birthday Madzia ❤️</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
-    background: #050510;
-    color: white;
 }
 
 body {
-    position: relative;
+    font-family: Georgia, "Times New Roman", serif;
+    color: white;
+    background: #05030d;
 }
 
-/* ================= BACKGROUND ================= */
+
+/* =========================================================
+   NIGHT SKY
+========================================================= */
 
 .sky {
     position: fixed;
     inset: 0;
+    z-index: -20;
+
     background:
-        radial-gradient(circle at 50% 25%, #242044 0%, #100d24 38%, #050510 80%);
-    z-index: -10;
+        radial-gradient(
+            circle at 50% 25%,
+            #30204f 0%,
+            #18102f 32%,
+            #090618 65%,
+            #030208 100%
+        );
 }
 
 .stars {
     position: fixed;
     inset: 0;
-    z-index: -5;
+    z-index: -10;
+    pointer-events: none;
 }
 
 .star {
     position: absolute;
     width: 2px;
     height: 2px;
-    background: white;
     border-radius: 50%;
-    animation: twinkle 2s infinite alternate;
+    background: white;
+
+    animation:
+        twinkle 2s ease-in-out infinite alternate;
 }
 
 @keyframes twinkle {
-    from { opacity: .2; transform: scale(.7); }
-    to { opacity: 1; transform: scale(1.4); }
+
+    from {
+        opacity: .15;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
 }
 
-/* ================= SCREENS ================= */
+
+/* =========================================================
+   SCREENS
+========================================================= */
 
 .screen {
+
     position: absolute;
     inset: 0;
+
     display: none;
+
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     padding: 25px;
+
     text-align: center;
+
     overflow-y: auto;
 }
 
@@ -76,282 +114,1159 @@ body {
     display: flex;
 }
 
-/* ================= TEXT ================= */
+
+/* =========================================================
+   TEXT
+========================================================= */
 
 .small-title {
-    font-size: 14px;
+
+    font-size: 13px;
+
     letter-spacing: 5px;
-    color: #d9caff;
-    margin-bottom: 15px;
+
+    color: #e1cfff;
+
+    margin-bottom: 16px;
 }
 
 h1 {
-    font-size: clamp(34px, 10vw, 65px);
-    margin-bottom: 15px;
-    text-shadow: 0 0 25px rgba(255,255,255,.25);
+
+    font-size: clamp(
+        38px,
+        11vw,
+        70px
+    );
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.25),
+        0 0 45px rgba(190,120,255,.25);
 }
 
 h2 {
-    font-size: clamp(27px, 8vw, 48px);
+
+    font-size: clamp(
+        27px,
+        8vw,
+        50px
+    );
+
     margin-bottom: 20px;
 }
 
 p {
-    max-width: 650px;
-    line-height: 1.8;
+
+    max-width: 680px;
+
     font-size: 17px;
-    color: #eee9ff;
+
+    line-height: 1.85;
+
+    color: #f0eaff;
 }
 
-/* ================= BUTTON ================= */
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .btn {
-    margin-top: 30px;
+
+    margin-top: 28px;
+
     padding: 14px 28px;
-    border: 1px solid rgba(255,255,255,.35);
-    border-radius: 30px;
+
+    border-radius: 40px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.3);
+
     color: white;
-    background: rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.08);
+
+    backdrop-filter: blur(12px);
+
     font-size: 16px;
+
     cursor: pointer;
-    backdrop-filter: blur(10px);
+
     transition: .3s;
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    background: rgba(255,255,255,.15);
+
+    transform: scale(1.06);
+
+    background:
+        rgba(255,255,255,.16);
 }
 
-/* ================= GIFT ================= */
+.btn:active {
+
+    transform: scale(.96);
+}
+
+
+/* =========================================================
+   GIFT
+========================================================= */
 
 .gift {
-    width: 145px;
-    height: 120px;
+
+    width: 150px;
+    height: 125px;
+
     position: relative;
-    margin: 30px;
+
+    margin: 28px;
+
     cursor: pointer;
-    animation: float 2.5s ease-in-out infinite;
+
+    animation:
+        giftFloat 2.5s ease-in-out infinite;
 }
 
 .gift-box {
+
     position: absolute;
+
     bottom: 0;
-    width: 145px;
-    height: 90px;
-    background: linear-gradient(135deg,#9d5cff,#6230a8);
-    border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(140,70,255,.4);
+
+    width: 150px;
+    height: 92px;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a864ff,
+            #542095
+        );
+
+    box-shadow:
+        0 20px 50px
+        rgba(130,70,255,.45);
 }
 
-.gift-box:before {
+.gift-box::before {
+
     content: "";
+
     position: absolute;
-    left: 60px;
-    width: 25px;
-    height: 90px;
-    background: #ffd86b;
+
+    left: 62px;
+
+    width: 26px;
+    height: 92px;
+
+    background: #ffd86a;
 }
 
 .gift-lid {
+
     position: absolute;
-    top: 15px;
+
+    top: 14px;
     left: -7px;
-    width: 159px;
-    height: 30px;
-    background: #b36cff;
-    border-radius: 7px;
-}
 
-.gift-lid:before {
-    content: "";
-    position: absolute;
-    left: 67px;
-    width: 25px;
-    height: 30px;
-    background: #ffd86b;
-}
+    width: 164px;
+    height: 31px;
 
-@keyframes float {
-    50% {
-        transform: translateY(-12px);
-    }
-}
+    border-radius: 8px;
 
-/* ================= MOON ================= */
+    background:
+        linear-gradient(
+            135deg,
+            #c079ff,
+            #7130bb
+        );
 
-.moon {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: #fff9d8;
-    box-shadow:
-        0 0 25px #fff,
-        0 0 70px rgba(255,240,180,.6);
-    margin-bottom: 35px;
-    position: relative;
-}
-
-.moon:after {
-    content: "";
-    position: absolute;
-    width: 145px;
-    height: 145px;
-    border-radius: 50%;
-    background: #151129;
-    left: 42px;
-    top: -8px;
-}
-
-/* ================= PHOTO ================= */
-
-.photo-frame {
-    padding: 10px;
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.3);
-    border-radius: 20px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.5);
-    margin-bottom: 25px;
-}
-
-.photo-frame img {
-    display: block;
-    width: min(80vw, 350px);
-    max-height: 55vh;
-    object-fit: cover;
-    border-radius: 14px;
-}
-
-/* ================= MESSAGE ================= */
-
-.message-box {
-    max-width: 700px;
-    padding: 28px;
-    border-radius: 25px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.12);
-    backdrop-filter: blur(12px);
-}
-
-.message-box p {
-    font-size: 17px;
-    line-height: 2;
-}
-
-/* ================= CAKE ================= */
-
-.cake-area {
-    position: relative;
-    width: 280px;
-    height: 280px;
-    margin: 20px auto;
-}
-
-.cake {
-    position: absolute;
-    bottom: 25px;
-    left: 20px;
-    width: 240px;
-    height: 150px;
-}
-
-.cake-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 240px;
-    height: 65px;
-    background: #fff4df;
-    border-radius: 50%;
-    border: 3px solid #f0d8b5;
-}
-
-.cake-body {
-    position: absolute;
-    top: 32px;
-    left: 0;
-    width: 240px;
-    height: 105px;
-    background: linear-gradient(
-        to bottom,
-        #fff7e8,
-        #f1dfc4
-    );
-    border-radius: 0 0 18px 18px;
-    box-shadow: 0 15px 25px rgba(0,0,0,.4);
-}
-
-.cream {
-    position: absolute;
-    top: 25px;
-    left: 0;
-    width: 240px;
-    height: 35px;
-    background: #fffaf0;
-    border-radius: 50%;
     z-index: 2;
 }
 
-.cake-name {
+.gift-lid::before {
+
+    content: "";
+
     position: absolute;
-    z-index: 4;
-    top: 76px;
-    left: 0;
-    width: 240px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 23px;
-    letter-spacing: 3px;
-    color: #b77b45;
+
+    left: 69px;
+
+    width: 26px;
+    height: 31px;
+
+    background: #ffd86a;
 }
 
-/* ================= CANDLES ================= */
+@keyframes giftFloat {
+
+    50% {
+        transform:
+            translateY(-13px)
+            rotate(1deg);
+    }
+}
+
+
+/* =========================================================
+   MOON
+========================================================= */
+
+.moon {
+
+    width: 165px;
+    height: 165px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #fff6c9 60%,
+            #e9d993
+        );
+
+    box-shadow:
+        0 0 25px white,
+        0 0 70px
+        rgba(255,238,170,.55);
+
+    position: relative;
+
+    margin-bottom: 35px;
+}
+
+.moon::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background: #17102c;
+
+    left: 45px;
+    top: -8px;
+}
+
+
+/* =========================================================
+   GLASS MESSAGE
+========================================================= */
+
+.message-box {
+
+    width: min(
+        700px,
+        92vw
+    );
+
+    padding: 27px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.3);
+}
+
+.message-box p {
+
+    font-size: 17px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   CONFESSION
+========================================================= */
+
+.confession-card {
+
+    width: min(
+        700px,
+        92vw
+    );
+
+    padding: 30px 22px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,110,180,.08),
+            rgba(140,90,255,.08)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.4);
+}
+
+.question {
+
+    margin-top: 25px;
+
+    font-size:
+        clamp(22px, 6vw, 34px);
+
+    color: #ffd9ea;
+}
+
+.answer-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+}
+
+.yes-button,
+.no-button {
+
+    border: none;
+
+    border-radius: 35px;
+
+    padding:
+        14px 30px;
+
+    font-size: 17px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.yes-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4f98,
+            #b82dff
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,70,160,.3);
+}
+
+.no-button {
+
+    background:
+        rgba(255,255,255,.09);
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+}
+
+.yes-button:hover,
+.no-button:hover {
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   CONFESSION REVEAL
+========================================================= */
+
+.reveal {
+
+    display: none;
+
+    margin-top: 25px;
+
+    animation:
+        revealIn 1s ease forwards;
+}
+
+.reveal.show {
+    display: block;
+}
+
+.reveal-name {
+
+    font-size:
+        clamp(
+            38px,
+            12vw,
+            75px
+        );
+
+    font-weight: bold;
+
+    margin-top: 18px;
+
+    color: #ff9fca;
+
+    text-shadow:
+        0 0 20px #ff4f98,
+        0 0 50px
+        rgba(255,60,160,.5);
+}
+
+@keyframes revealIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.7)
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   24/7 SECTION
+========================================================= */
+
+.number-love {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 25px 0;
+
+    flex-wrap: wrap;
+}
+
+.number-box {
+
+    padding: 18px 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    min-width: 100px;
+}
+
+.number {
+
+    display: block;
+
+    font-size: 38px;
+
+    font-weight: bold;
+
+    color: #ffb4d6;
+}
+
+.number-label {
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    color: #d8cce8;
+}
+
+
+/* =========================================================
+   WISH STARS
+========================================================= */
+
+.wish-stars {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    max-width: 500px;
+
+    margin-top: 20px;
+}
+
+.wish-star {
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    transition: .3s;
+}
+
+.wish-star:hover {
+
+    transform:
+        scale(1.2)
+        rotate(10deg);
+
+    background:
+        rgba(255,210,100,.15);
+}
+
+.wish-result {
+
+    min-height: 45px;
+
+    margin-top: 20px;
+
+    color: #ffd8eb;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   CAKE SECTION
+========================================================= */
+
+.cake-screen {
+
+    perspective: 1100px;
+}
+
+
+/* Cake stage */
+
+.cake-stage {
+
+    position: relative;
+
+    width: 330px;
+    height: 350px;
+
+    margin-top: 5px;
+
+    perspective: 1000px;
+}
+
+
+/* Floor */
+
+.cake-floor {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 15px;
+
+    transform:
+        translateX(-50%)
+        rotateX(65deg);
+
+    width: 290px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,180,220,.2),
+            rgba(255,180,220,0)
+        );
+
+    filter: blur(3px);
+}
+
+
+/* Main cake */
+
+.cake-3d {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 55px;
+
+    width: 270px;
+    height: 220px;
+
+    transform:
+        translateX(-50%)
+        rotateX(4deg)
+        rotateY(-7deg);
+
+    transform-style: preserve-3d;
+
+    animation:
+        cakeFloat 4s ease-in-out infinite;
+}
+
+@keyframes cakeFloat {
+
+    0%,100% {
+        transform:
+            translateX(-50%)
+            rotateX(4deg)
+            rotateY(-7deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotateX(4deg)
+            rotateY(7deg)
+            translateY(-5px);
+    }
+}
+
+
+/* =========================================================
+   CAKE LAYERS
+========================================================= */
+
+.layer {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 260px;
+
+    border-radius: 18px 18px 25px 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d7ad76 0%,
+            #fff0d0 14%,
+            #fff9e9 48%,
+            #e6c08c 100%
+        );
+
+    box-shadow:
+        inset 12px 0 18px
+        rgba(120,70,25,.12),
+
+        inset -14px 0 20px
+        rgba(120,70,25,.18),
+
+        0 15px 20px
+        rgba(0,0,0,.25);
+
+    overflow: visible;
+}
+
+
+/* bottom layer */
+
+.layer-bottom {
+
+    bottom: 0;
+
+    height: 72px;
+
+    z-index: 1;
+}
+
+
+/* middle */
+
+.layer-middle {
+
+    bottom: 60px;
+
+    height: 72px;
+
+    width: 250px;
+
+    z-index: 2;
+}
+
+
+/* top */
+
+.layer-top {
+
+    bottom: 120px;
+
+    height: 72px;
+
+    width: 240px;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   CAKE SIDES / DEPTH
+========================================================= */
+
+.layer::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: -15px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c7955e,
+            #f5d7a6 30%,
+            #d5a46d 75%,
+            #ad7949
+        );
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   CREAM BETWEEN LAYERS
+========================================================= */
+
+.cream-layer {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    height: 25px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fffdf5,
+            #ffe9f0
+        );
+
+    box-shadow:
+        0 4px 8px
+        rgba(0,0,0,.15);
+
+    z-index: 8;
+}
+
+.cream-one {
+
+    bottom: 55px;
+
+    width: 255px;
+}
+
+.cream-two {
+
+    bottom: 115px;
+
+    width: 245px;
+}
+
+
+/* =========================================================
+   TOP FROSTING
+========================================================= */
+
+.top-frosting {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 174px;
+
+    transform:
+        translateX(-50%);
+
+    width: 240px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            #fffef7 0%,
+            #fff5e7 65%,
+            #f9dfe6 100%
+        );
+
+    z-index: 7;
+
+    box-shadow:
+        0 7px 10px
+        rgba(0,0,0,.2);
+}
+
+
+/* dripping cream */
+
+.drip {
+
+    position: absolute;
+
+    width: 24px;
+    height: 35px;
+
+    border-radius:
+        0 0 15px 15px;
+
+    background: #fff7ec;
+
+    bottom: -20px;
+}
+
+.drip.one {
+    left: 30px;
+}
+
+.drip.two {
+    left: 90px;
+    height: 27px;
+}
+
+.drip.three {
+    right: 55px;
+    height: 40px;
+}
+
+.drip.four {
+    right: 22px;
+    height: 25px;
+}
+
+
+/* =========================================================
+   STRAWBERRIES
+========================================================= */
+
+.strawberry {
+
+    position: absolute;
+
+    width: 34px;
+    height: 38px;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffb1b1 0 7%,
+            transparent 8%
+        ),
+        radial-gradient(
+            circle at 65% 35%,
+            #ff9a9a 0 7%,
+            transparent 8%
+        ),
+        radial-gradient(
+            circle at 45% 70%,
+            #ff9a9a 0 7%,
+            transparent 8%
+        ),
+        linear-gradient(
+            135deg,
+            #ff4b55,
+            #bd122c
+        );
+
+    border-radius:
+        50% 50% 55% 55% /
+        45% 45% 65% 65%;
+
+    z-index: 15;
+
+    box-shadow:
+        0 5px 9px
+        rgba(0,0,0,.25);
+}
+
+.strawberry::before {
+
+    content: "🍃";
+
+    position: absolute;
+
+    font-size: 20px;
+
+    left: 6px;
+    top: -17px;
+}
+
+.strawberry.s1 {
+
+    left: 42px;
+    bottom: 182px;
+
+    transform:
+        rotate(-12deg);
+}
+
+.strawberry.s2 {
+
+    right: 42px;
+    bottom: 180px;
+
+    transform:
+        rotate(13deg)
+        scale(.9);
+}
+
+.strawberry.s3 {
+
+    left: 118px;
+    bottom: 193px;
+
+    transform:
+        rotate(4deg)
+        scale(.82);
+}
+
+
+/* strawberry slices */
+
+.slice {
+
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffadb0 0 18%,
+            #ff6d76 20% 65%,
+            #d92545 67%
+        );
+
+    border: 3px solid #fff3ee;
+
+    z-index: 12;
+}
+
+.slice.s1 {
+
+    left: 25px;
+    bottom: 125px;
+
+    transform:
+        rotate(-20deg);
+}
+
+.slice.s2 {
+
+    right: 20px;
+    bottom: 115px;
+
+    transform:
+        rotate(20deg);
+}
+
+
+/* =========================================================
+   MADZIA NAME
+========================================================= */
+
+.cake-name {
+
+    position: absolute;
+
+    z-index: 20;
+
+    left: 50%;
+
+    bottom: 73px;
+
+    transform:
+        translateX(-50%);
+
+    width: 230px;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    font-size: 24px;
+
+    color: #b94c65;
+
+    text-shadow:
+        1px 1px 0 #fff;
+}
+
+
+/* =========================================================
+   CANDLES
+========================================================= */
 
 .candles {
+
     position: absolute;
-    z-index: 6;
-    top: -25px;
+
+    z-index: 30;
+
     left: 50%;
-    transform: translateX(-50%);
+
+    bottom: 218px;
+
+    transform:
+        translateX(-50%);
+
     display: flex;
-    gap: 28px;
+
+    gap: 35px;
 }
 
 .candle {
+
     position: relative;
-    width: 15px;
-    height: 55px;
-    border-radius: 4px;
-    background: repeating-linear-gradient(
-        45deg,
-        #ff92bd,
-        #ff92bd 5px,
-        #fff 5px,
-        #fff 9px
-    );
+
+    width: 16px;
+    height: 60px;
+
+    border-radius: 5px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #ff78ae 0 6px,
+            #fff 6px 11px
+        );
+
+    box-shadow:
+        2px 5px 8px
+        rgba(0,0,0,.25);
 }
 
 .flame {
+
     position: absolute;
-    width: 17px;
-    height: 25px;
-    left: -1px;
-    top: -26px;
-    background: #ffbd42;
-    border-radius: 50% 50% 50% 50%;
+
+    width: 20px;
+    height: 29px;
+
+    left: -2px;
+    top: -29px;
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            #fff 0 15%,
+            #ffd35a 25%,
+            #ff7b00 65%,
+            #ff3b00 100%
+        );
+
     box-shadow:
-        0 0 10px #ff9d00,
-        0 0 25px #ff7b00;
-    animation: flame 0.5s infinite alternate;
+        0 0 10px #ffb000,
+        0 0 28px #ff7300;
+
+    animation:
+        flameMove .45s
+        ease-in-out infinite alternate;
 }
 
-@keyframes flame {
+@keyframes flameMove {
+
     from {
-        transform: scale(.9) rotate(-2deg);
+        transform:
+            scale(.9)
+            rotate(-3deg);
     }
+
     to {
-        transform: scale(1.1) rotate(2deg);
+        transform:
+            scale(1.12)
+            rotate(3deg);
     }
 }
 
@@ -360,433 +1275,1131 @@ p {
 }
 
 .smoke {
+
     display: none;
+
     position: absolute;
-    width: 8px;
-    height: 35px;
+
+    width: 10px;
+    height: 38px;
+
     left: 3px;
-    top: -30px;
+    top: -35px;
+
     border-radius: 50%;
-    background: rgba(220,220,220,.35);
-    filter: blur(3px);
+
+    background:
+        rgba(220,220,220,.4);
+
+    filter: blur(4px);
 }
 
 .smoke.show {
+
     display: block;
-    animation: smoke 1.4s forwards;
+
+    animation:
+        smokeRise 1.6s
+        ease-out forwards;
 }
 
-@keyframes smoke {
+@keyframes smokeRise {
+
     to {
-        transform: translateY(-35px) translateX(15px) scale(1.7);
+
         opacity: 0;
+
+        transform:
+            translate(
+                15px,
+                -45px
+            )
+            scale(1.8);
     }
 }
 
-/* ================= BLOW BUTTON ================= */
+
+/* =========================================================
+   CAKE BUTTONS
+========================================================= */
 
 .blow-button {
-    margin-top: 15px;
-    padding: 13px 22px;
+
+    margin-top: 8px;
+
+    padding:
+        14px 25px;
+
     border: none;
-    border-radius: 25px;
-    background: #ff6fae;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5e9c,
+            #c43cff
+        );
+
     color: white;
-    font-size: 15px;
+
+    font-size: 16px;
+
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(255,100,170,.3);
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,70,170,.3);
 }
 
-/* ================= CELEBRATION ================= */
+
+/* =========================================================
+   CELEBRATION
+========================================================= */
 
 #celebration {
+
     background:
-        radial-gradient(circle at center,
-        #3c165e 0%,
-        #160c2d 45%,
-        #050510 100%);
+        radial-gradient(
+            circle at center,
+            #522276,
+            #180b2e 48%,
+            #05030d
+        );
 }
 
 .congrats {
-    font-size: clamp(42px, 12vw, 90px);
+
+    font-size:
+        clamp(
+            42px,
+            12vw,
+            95px
+        );
+
     font-weight: bold;
-    animation: celebrationText 1s infinite alternate;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,255,255,.5);
+
+    animation:
+        celebrationPulse
+        .8s ease-in-out
+        infinite alternate;
 }
 
-@keyframes celebrationText {
-    from {
-        transform: scale(1);
-    }
+@keyframes celebrationPulse {
+
     to {
-        transform: scale(1.07);
+        transform:
+            scale(1.08);
     }
 }
 
 .birthday-big {
-    margin-top: 20px;
-    font-size: clamp(23px, 6vw, 42px);
+
+    margin-top: 22px;
+
+    font-size:
+        clamp(
+            24px,
+            6vw,
+            45px
+        );
+
+    color: #ffd7e8;
 }
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
 
 .confetti {
+
     position: fixed;
+
+    top: -30px;
+
     width: 9px;
     height: 15px;
-    top: -30px;
+
     z-index: 100;
-    animation: fall linear forwards;
+
+    animation:
+        confettiFall
+        linear
+        forwards;
 }
 
-@keyframes fall {
+@keyframes confettiFall {
+
     to {
-        transform: translateY(110vh) rotate(720deg);
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
     }
 }
+
+
+/* =========================================================
+   BALLOONS
+========================================================= */
 
 .balloon {
+
     position: fixed;
+
     bottom: -100px;
-    width: 45px;
-    height: 58px;
-    border-radius: 50%;
-    animation: balloonUp 6s linear forwards;
+
     z-index: 90;
+
+    font-size: 45px;
+
+    animation:
+        balloonRise
+        linear
+        forwards;
 }
 
-.balloon:after {
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: 80px;
-    background: rgba(255,255,255,.6);
-    top: 55px;
-    left: 22px;
-}
+@keyframes balloonRise {
 
-@keyframes balloonUp {
     to {
-        transform: translateY(-120vh);
+
+        transform:
+            translateY(-120vh);
     }
 }
 
-.heart {
+
+/* =========================================================
+   HEARTS
+============*/
+
+      .heart {
+
     position: fixed;
-    bottom: -50px;
-    font-size: 25px;
-    animation: heartUp 5s linear forwards;
+
+    bottom: -60px;
+
     z-index: 95;
+
+    font-size: 25px;
+
+    pointer-events: none;
+
+    animation:
+        heartRise
+        linear
+        forwards;
 }
 
-@keyframes heartUp {
+@keyframes heartRise {
+
     to {
-        transform: translateY(-110vh) rotate(30deg);
+
+        transform:
+            translateY(-115vh)
+            rotate(25deg);
+
         opacity: 0;
     }
 }
 
-/* ================= FINAL ================= */
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+
+.sparkle {
+
+    position: fixed;
+
+    z-index: 101;
+
+    pointer-events: none;
+
+    animation:
+        sparklePop
+        1.5s
+        ease-out
+        forwards;
+}
+
+@keyframes sparklePop {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(0deg);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.4)
+            rotate(180deg);
+    }
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            scale(.3)
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
 
 .final-text {
-    max-width: 700px;
+
+    width: min(
+        700px,
+        92vw
+    );
 }
 
 .final-text p {
+
     font-size: 18px;
+
     line-height: 2;
 }
 
 .signature {
+
     margin-top: 30px;
+
     font-size: 20px;
+
     color: #ffd6e8;
 }
 
-/* ================= MOBILE ================= */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:500px) {
 
     .screen {
+
         padding: 18px;
     }
 
     p {
+
         font-size: 15px;
     }
 
     .message-box {
+
         padding: 20px;
     }
 
-    .cake-area {
-        transform: scale(.85);
-        margin-top: 0;
-        margin-bottom: -15px;
+    .cake-stage {
+
+        transform:
+            scale(.82);
+
+        margin-top: -25px;
+
+        margin-bottom: -30px;
+    }
+
+    .cake-screen {
+
+        justify-content:
+            center;
+    }
+
+    .confession-card {
+
+        padding:
+            25px 18px;
+    }
+
+    .answer-buttons {
+
+        gap: 12px;
+    }
+
+    .yes-button,
+    .no-button {
+
+        padding:
+            13px 24px;
+
+        font-size: 16px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- ========================================================
+     BACKGROUND
+========================================================= -->
+
 <div class="sky"></div>
-<div class="stars" id="stars"></div>
 
-<!-- ================= OPENING ================= -->
+<div
+    class="stars"
+    id="stars">
+</div>
 
-<section class="screen active" id="opening">
 
-    <div class="small-title">A LITTLE SURPRISE ✨</div>
+<!-- ========================================================
+     OPENING
+========================================================= -->
 
-    <h1>For Madzia ❤️</h1>
+<section
+    class="screen active"
+    id="opening">
 
-    <p>
-        Something small, something special,
-        and something made just for you. 🌙✨
-    </p>
-
-    <div class="gift" onclick="showScreen('memoryIntro')">
-        <div class="gift-lid"></div>
-        <div class="gift-box"></div>
+    <div class="small-title">
+        A LITTLE SURPRISE ✨
     </div>
 
-    <button class="btn" onclick="showScreen('memoryIntro')">
-        Open your surprise 🎁
-    </button>
-
-</section>
-
-
-<!-- ================= MEMORY INTRO ================= -->
-
-<section class="screen" id="memoryIntro">
-
-    <div class="small-title">OUR MEMORIES 💭</div>
-
-    <h2>Little moments became big memories ❤️</h2>
+    <h1>
+        For Madzia ❤️
+    </h1>
 
     <p>
-        All those conversations, laughs, random moments,
-        and nights we stayed awake just to spend more time
-        talking to each other. 🌙💬
+        Something small,
+        something special,
+        and something made
+        just for you. 🌙✨
     </p>
 
-    <button class="btn" onclick="showScreen('moon')">
-        Continue ✨
+    <div
+        class="gift"
+        onclick="showScreen('memories')">
+
+        <div class="gift-lid"></div>
+
+        <div class="gift-box"></div>
+
+    </div>
+
+    <button
+        class="btn"
+        onclick="showScreen('memories')">
+
+        Open your surprise 🎁
+
     </button>
 
 </section>
 
 
-<!-- ================= MOON ================= -->
+<!-- ========================================================
+     MEMORIES
+========================================================= -->
 
-<section class="screen" id="moon">
+<section
+    class="screen"
+    id="memories">
+
+    <div class="small-title">
+        OUR MEMORIES 💭
+    </div>
+
+    <h2>
+        Little moments became
+        big memories ❤️
+    </h2>
+
+    <div class="message-box">
+
+        <p>
+
+            The conversations...
+
+            <br><br>
+
+            The random laughs...
+
+            <br><br>
+
+            The days we spent
+            together...
+
+            <br><br>
+
+            And those beautiful nights
+            when we stayed awake
+            just for each other —
+            talking, laughing,
+            and doing the same little
+            things from different places. 🌙✨
+
+            <br><br>
+
+            Somehow those little moments
+            became some of the memories
+            I treasure the most. ❤️
+
+        </p>
+
+    </div>
+
+    <button
+        class="btn"
+        onclick="showScreen('moon')">
+
+        Continue 🌙
+
+    </button>
+
+</section>
+
+
+<!-- ========================================================
+     MOON
+========================================================= -->
+
+<section
+    class="screen"
+    id="moon">
 
     <div class="moon"></div>
 
-    <h2>You are like the moon to me 🌙</h2>
+    <h2>
+        You are like the moon to me 🌙
+    </h2>
 
     <div class="message-box">
 
         <p>
-            There are billions of things happening in this world,
-            but somehow you still manage to run through my mind
+
+            There are billions of things
+            happening in this world...
+
+            <br><br>
+
+            Yet somehow,
+            you still manage to run
+            through my mind
             24/7. ❤️
+
             <br><br>
 
-            I think about the nights we spent together,
-            the days we shared, and those beautiful nights
-            when we stayed awake for each other —
-            talking, laughing, and doing the same little things
-            from different places. 🌙✨
-            <br><br>
+            Just like the moon,
+            you have this way of making
+            even the darkest nights
+            feel a little brighter. ✨
 
-            Somehow, distance never made those moments feel small.
-            They became some of the memories I treasure the most. 💕
         </p>
 
     </div>
 
-    <button class="btn" onclick="showScreen('photo')">
-        One more thing... 📸
-    </button>
+    <div class="number-love">
 
-</section>
+        <div class="number-box">
 
+            <span class="number">
+                24
+            </span>
 
-<!-- ================= PHOTO ================= -->
-
-<section class="screen" id="photo">
-
-    <div class="small-title">ONE BEAUTIFUL PERSON 📸</div>
-
-    <div class="photo-frame">
-        <img src="madzia.png" alt="Madzia">
-    </div>
-
-    <p>
-        And of course... I couldn't make this without
-        including you. ❤️
-    </p>
-
-    <button class="btn" onclick="showScreen('birthdayMessage')">
-        Read your birthday message 💌
-    </button>
-
-</section>
-
-
-<!-- ================= BIRTHDAY MESSAGE ================= -->
-
-<section class="screen" id="birthdayMessage">
-
-    <div class="small-title">HAPPY BIRTHDAY 🎂</div>
-
-    <h2>Happy Birthday, Madzia ❤️</h2>
-
-    <div class="message-box">
-
-        <p>
-            Happy Birthday to someone who has become
-            such a beautiful part of my life. ❤️✨
-            <br><br>
-
-            I hope today gives you the same happiness
-            that you have brought into so many of my days.
-            🌸💗
-            <br><br>
-
-            I want to keep being there, enjoying the little
-            things with you, making more memories, laughing
-            together, staying awake talking about everything
-            and nothing, and seeing where life takes us
-            together. 🌙❤️
-            <br><br>
-
-            No matter how many days pass, I hope there are
-            always more memories waiting for us.
-            ✨
-            <br><br>
-
-            You deserve a beautiful birthday,
-            a beautiful year, and countless beautiful moments.
-            🎂🌷💖
-        </p>
-
-    </div>
-
-    <button class="btn" onclick="showScreen('cake')">
-        Your cake is waiting 🎂
-    </button>
-
-</section>
-
-
-<!-- ================= CAKE ================= -->
-
-<section class="screen" id="cake">
-
-    <div class="small-title">MAKE A WISH ✨</div>
-
-    <h2>Your Birthday Cake 🎂</h2>
-
-    <div class="cake-area">
-
-        <div class="candles">
-
-            <div class="candle">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-            </div>
-
-            <div class="candle">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-            </div>
-
-            <div class="candle">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-            </div>
+            <span class="number-label">
+                HOURS
+            </span>
 
         </div>
 
-        <div class="cake">
+        <div
+            style="
+            font-size:30px;
+            color:#ffb6d7;
+            ">
+            ×
+        </div>
 
-            <div class="cake-top"></div>
+        <div class="number-box">
 
-            <div class="cake-body"></div>
+            <span class="number">
+                7
+            </span>
 
-            <div class="cream"></div>
+            <span class="number-label">
+                DAYS
+            </span>
+
+        </div>
+
+    </div>
+
+    <button
+        class="btn"
+        onclick="showScreen('confession')">
+
+        There's something I want to tell you... 💌
+
+    </button>
+
+</section>
+
+
+<!-- ========================================================
+     CONFESSION
+========================================================= -->
+
+<section
+    class="screen"
+    id="confession">
+
+    <div class="small-title">
+        SOMETHING I'VE WANTED TO SAY ❤️
+    </div>
+
+    <div class="confession-card">
+
+        <h2>
+            Can I tell you something?
+        </h2>
+
+        <p>
+
+            I've wanted to tell you this
+            for a long time...
+
+            <br><br>
+
+            But I never really knew
+            how you would feel about it,
+            and I never wanted to say it
+            in a way that might hurt you.
+
+            <br><br>
+
+            So I thought this might be
+            the best way to finally ask.
+
+        </p>
+
+        <div class="question">
+
+            Do you want to know? 👀❤️
+
+        </div>
+
+        <div
+            class="answer-buttons"
+            id="answerButtons">
+
+            <button
+                class="yes-button"
+                onclick="yesAnswer()">
+
+                YES ❤️
+
+            </button>
+
+            <button
+                class="no-button"
+                onclick="noAnswer()">
+
+                NO 🌸
+
+            </button>
+
+        </div>
+
+
+        <!-- YES -->
+
+        <div
+            class="reveal"
+            id="yesReveal">
+
+            <p>
+
+                Okay...
+
+                <br><br>
+
+                Here goes... 🥹❤️
+
+                <br><br>
+
+                There is someone I've been
+                thinking about more than
+                I probably should...
+
+                <br><br>
+
+                Someone who makes ordinary
+                days feel special.
+
+                <br><br>
+
+                Someone I love spending
+                my nights talking to. 🌙
+
+                <br><br>
+
+                And that person is...
+
+            </p>
+
+            <div class="reveal-name">
+
+                MADZIA...
+
+                <br>
+
+                IT'S YOUUU! ❤️
+
+            </div>
+
+            <p style="margin-top:20px;">
+
+                ❤️ 💖 💕 💗 💓 💞
+
+            </p>
+
+        </div>
+
+
+        <!-- NO -->
+
+        <div
+            class="reveal"
+            id="noReveal">
+
+            <p>
+
+                That's completely okay. 🌸❤️
+
+                <br><br>
+
+                You don't have to know
+                until you're ready.
+
+                <br><br>
+
+                Just remember...
+
+                <br><br>
+
+                someone thinks you're
+                pretty special. 🌙✨
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <button
+        class="btn"
+        id="confessionContinue"
+        style="display:none;"
+        onclick="showScreen('wishes')">
+
+        Continue to your birthday surprise 🎂
+
+    </button>
+
+</section>
+
+
+<!-- ========================================================
+     WISHES
+========================================================= -->
+
+<section
+    class="screen"
+    id="wishes">
+
+    <div class="small-title">
+        A FEW WISHES FOR YOU ⭐
+    </div>
+
+    <h2>
+        Pick a star ✨
+    </h2>
+
+    <p>
+        Each one has a little wish
+        hidden inside. ❤️
+    </p>
+
+    <div class="wish-stars">
+
+        <div
+            class="wish-star"
+            onclick="showWish(0)">
+            ⭐
+        </div>
+
+        <div
+            class="wish-star"
+            onclick="showWish(1)">
+            ⭐
+        </div>
+
+        <div
+            class="wish-star"
+            onclick="showWish(2)">
+            ⭐
+        </div>
+
+        <div
+            class="wish-star"
+            onclick="showWish(3)">
+            ⭐
+        </div>
+
+        <div
+            class="wish-star"
+            onclick="showWish(4)">
+            ⭐
+        </div>
+
+        <div
+            class="wish-star"
+            onclick="showWish(5)">
+            ⭐
+        </div>
+
+    </div>
+
+    <div
+        class="wish-result"
+        id="wishResult">
+
+        Tap a star ✨
+
+    </div>
+
+    <button
+        class="btn"
+        onclick="showScreen('cake')">
+
+        Your cake is waiting... 🍓🎂
+
+    </button>
+
+</section>
+
+
+<!-- ========================================================
+     3D STRAWBERRY VANILLA CAKE
+========================================================= -->
+
+<section
+    class="screen cake-screen"
+    id="cake">
+
+    <div class="small-title">
+        MAKE A WISH ✨
+    </div>
+
+    <h2>
+        A little sweetness for someone sweet 🍓❤️
+    </h2>
+
+
+    <div class="cake-stage">
+
+        <div class="cake-floor"></div>
+
+
+        <div class="cake-3d">
+
+
+            <!-- BOTTOM CAKE -->
+
+            <div
+                class="layer layer-bottom">
+            </div>
+
+
+            <!-- MIDDLE CAKE -->
+
+            <div
+                class="layer layer-middle">
+            </div>
+
+
+            <!-- TOP CAKE -->
+
+            <div
+                class="layer layer-top">
+            </div>
+
+
+            <!-- CREAM -->
+
+            <div
+                class="cream-layer cream-one">
+            </div>
+
+            <div
+                class="cream-layer cream-two">
+            </div>
+
+
+            <!-- TOP FROSTING -->
+
+            <div class="top-frosting">
+
+                <div
+                    class="drip one">
+                </div>
+
+                <div
+                    class="drip two">
+                </div>
+
+                <div
+                    class="drip three">
+                </div>
+
+                <div
+                    class="drip four">
+                </div>
+
+            </div>
+
+
+            <!-- STRAWBERRIES -->
+
+            <div
+                class="strawberry s1">
+            </div>
+
+            <div
+                class="strawberry s2">
+            </div>
+
+            <div
+                class="strawberry s3">
+            </div>
+
+
+            <!-- STRAWBERRY SLICES -->
+
+            <div
+                class="slice s1">
+            </div>
+
+            <div
+                class="slice s2">
+            </div>
+
+
+            <!-- NAME -->
 
             <div class="cake-name">
+
                 MADZIA
+
+            </div>
+
+
+            <!-- THREE CANDLES -->
+
+            <div class="candles">
+
+
+                <div class="candle">
+
+                    <div
+                        class="flame">
+                    </div>
+
+                    <div
+                        class="smoke">
+                    </div>
+
+                </div>
+
+
+                <div class="candle">
+
+                    <div
+                        class="flame">
+                    </div>
+
+                    <div
+                        class="smoke">
+                    </div>
+
+                </div>
+
+
+                <div class="candle">
+
+                    <div
+                        class="flame">
+                    </div>
+
+                    <div
+                        class="smoke">
+                    </div>
+
+                </div>
+
+
             </div>
 
         </div>
 
     </div>
 
+
     <p>
-        Make a wish... ✨<br>
-        Then blow out the candles. 🕯️
+
+        Three candles.
+        One wish. 🕯️✨
+
+        <br>
+
+        Take a breath...
+
+        <br>
+
+        Then blow! 💨
+
     </p>
 
-    <button class="blow-button" onclick="startMic()">
+
+    <button
+        class="blow-button"
+        onclick="startMic()">
+
         🎤 Blow the candles
+
     </button>
 
-    <button class="btn" onclick="blowCandles()">
+
+    <button
+        class="btn"
+        onclick="blowCandles()">
+
         Tap if blowing doesn't work 🕯️
+
     </button>
 
 </section>
 
 
-<!-- ================= CELEBRATION ================= -->
+<!-- ========================================================
+     CELEBRATION
+========================================================= -->
 
-<section class="screen" id="celebration">
+<section
+    class="screen"
+    id="celebration">
 
     <div class="congrats">
+
         CONGRATULATIONS! 🎉
+
     </div>
 
     <div class="birthday-big">
-        HAPPY BIRTHDAY, MADZIA ❤️🎂
+
+        HAPPY BIRTHDAY,
+        MADZIA ❤️🎂
+
     </div>
 
 </section>
 
 
-<!-- ================= FINAL ================= -->
+<!-- ========================================================
+     FINAL MESSAGE
+========================================================= -->
 
-<section class="screen" id="final">
+<section
+    class="screen"
+    id="final">
 
-    <div class="small-title">ONE LAST THING ❤️</div>
+    <div class="small-title">
+        ONE LAST THING ❤️
+    </div>
 
-    <h2>For all the memories ahead... 🌙</h2>
+    <h2>
+        For all the memories ahead... 🌙
+    </h2>
 
     <div class="final-text">
 
         <p>
-            I hope this is only one of many birthdays
-            we get to celebrate through all the years
-            and memories still waiting for us. ❤️
+
+            I hope this is only one
+            of many birthdays we get
+            to celebrate through all
+            the years and memories
+            still waiting for us. ❤️
+
             <br><br>
 
-            Thank you for all the little moments,
-            the conversations, the laughs,
-            the late nights and everything in between.
-            ✨
+            Thank you for all the
+            little moments...
+
+            <br>
+
+            the conversations...
+
+            <br>
+
+            the laughs...
+
+            <br>
+
+            the late nights...
+
+            <br>
+
+            and everything in between. ✨
+
             <br><br>
 
-            Keep smiling, keep being you,
-            and never forget how special you are. 💗
+            I want to keep being there,
+            enjoying the little things
+            with you, making more memories,
+            and seeing where life takes us
+            together. 🌙❤️
+
             <br><br>
 
-            Happy Birthday once again, Madzia. 🎂🌙❤️
+            Keep smiling,
+            keep being you,
+            and never forget how special
+            you are. 💗
+
+            <br><br>
+
+            Happy Birthday once again,
+            Madzia. 🎂🌙❤️
+
         </p>
 
         <div class="signature">
+
             Made with lots of ❤️✨
+
         </div>
 
     </div>
@@ -796,21 +2409,29 @@ p {
 
 <script>
 
-/* ================= STARS ================= */
+/* =========================================================
+   CREATE STARS
+========================================================= */
 
-const stars = document.getElementById("stars");
+const stars =
+    document.getElementById("stars");
 
-for(let i = 0; i < 80; i++){
+for(let i = 0; i < 90; i++){
 
-    const star = document.createElement("div");
+    const star =
+        document.createElement("div");
 
-    star.className = "star";
+    star.className =
+        "star";
 
-    star.style.left = Math.random() * 100 + "%";
-    star.style.top = Math.random() * 100 + "%";
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
 
     star.style.animationDelay =
-        Math.random() * 2 + "s";
+        Math.random() * 3 + "s";
 
     star.style.opacity =
         Math.random();
@@ -819,129 +2440,377 @@ for(let i = 0; i < 80; i++){
 }
 
 
-/* ================= SCREEN SWITCH ================= */
+/* =========================================================
+   SCREEN SWITCHING
+========================================================= */
 
 function showScreen(id){
 
-    document.querySelectorAll(".screen")
+    document
+        .querySelectorAll(".screen")
         .forEach(screen => {
-            screen.classList.remove("active");
+
+            screen.classList.remove(
+                "active"
+            );
+
         });
 
-    document.getElementById(id)
-        .classList.add("active");
+
+    const target =
+        document.getElementById(id);
+
+
+    if(target){
+
+        target.classList.add(
+            "active"
+        );
+
+    }
 
 }
 
 
-/* ================= CANDLE BLOWING ================= */
+/* =========================================================
+   YES ANSWER
+========================================================= */
 
-let candlesBlown = false;
+function yesAnswer(){
+
+    document
+        .getElementById("answerButtons")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("yesReveal")
+        .classList.add("show");
+
+
+    document
+        .getElementById("noReveal")
+        .classList.remove("show");
+
+
+    document
+        .getElementById("confessionContinue")
+        .style.display =
+        "inline-block";
+
+
+    createHearts();
+
+    createSparkles();
+
+}
+
+
+/* =========================================================
+   NO ANSWER
+========================================================= */
+
+function noAnswer(){
+
+    document
+        .getElementById("answerButtons")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("noReveal")
+        .classList.add("show");
+
+
+    document
+        .getElementById("yesReveal")
+        .classList.remove("show");
+
+
+    document
+        .getElementById("confessionContinue")
+        .style.display =
+        "inline-block";
+
+}
+
+
+/* =========================================================
+   WISHES
+========================================================= */
+
+const wishes = [
+
+    "I wish you endless happiness. ❤️",
+
+    "I wish you countless reasons to smile. 🌸",
+
+    "I wish you beautiful memories. 🌙",
+
+    "I wish every new year of your life brings something wonderful. ✨",
+
+    "I wish you laughter on even the ordinary days. 💕",
+
+    "And most importantly... I wish you a very happy birthday. 🎂❤️"
+
+];
+
+
+function showWish(index){
+
+    document
+        .getElementById("wishResult")
+        .textContent =
+        wishes[index];
+
+
+    createSparkles();
+
+}
+
+
+/* =========================================================
+   CANDLE VARIABLES
+========================================================= */
+
+let candlesBlown =
+    false;
+
+let audioContext =
+    null;
+
+let analyser =
+    null;
+
+      
+
+let microphone =
+    null;
+
+let microphoneStream =
+    null;
+
+let microphoneRunning =
+    false;
+
+
+/* =========================================================
+   BLOW CANDLES
+========================================================= */
 
 function blowCandles(){
 
-    if(candlesBlown) return;
+    if(candlesBlown)
+        return;
 
-    candlesBlown = true;
 
-    document.querySelectorAll(".flame")
+    candlesBlown =
+        true;
+
+
+    /* Turn off flames */
+
+    document
+        .querySelectorAll(".flame")
         .forEach(flame => {
-            flame.classList.add("off");
+
+            flame.classList.add(
+                "off"
+            );
+
         });
 
-    document.querySelectorAll(".smoke")
+
+    /* Show smoke */
+
+    document
+        .querySelectorAll(".smoke")
         .forEach(smoke => {
-            smoke.classList.add("show");
+
+            smoke.classList.add(
+                "show"
+            );
+
         });
+
+
+    /* Stop microphone */
+
+    stopMicrophone();
+
+
+    createSparkles();
+
+
+    /* Celebration */
 
     setTimeout(() => {
 
-        showScreen("celebration");
+        showScreen(
+            "celebration"
+        );
+
 
         createConfetti();
+
         createBalloons();
+
         createHearts();
 
     }, 1200);
 
+
+    /* Final message */
+
     setTimeout(() => {
 
-        showScreen("final");
+        showScreen(
+            "final"
+        );
 
     }, 7500);
+
 }
 
 
-/* ================= MICROPHONE ================= */
-
-let audioContext;
-let analyser;
-let microphone;
-let microphoneRunning = false;
+/* =========================================================
+   MICROPHONE START
+========================================================= */
 
 async function startMic(){
 
-    if(microphoneRunning) return;
+    if(microphoneRunning)
+        return;
+
+
+    if(
+        !navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia
+    ){
+
+        alert(
+            "Microphone access is not supported here. You can use the button below instead."
+        );
+
+        return;
+    }
+
 
     try{
 
-        const stream =
-            await navigator.mediaDevices.getUserMedia({
-                audio: true
-            });
+        microphoneStream =
+            await navigator
+                .mediaDevices
+                .getUserMedia({
+                    audio: true
+                });
+
 
         audioContext =
-            new (window.AudioContext ||
-                 window.webkitAudioContext)();
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
 
         analyser =
             audioContext.createAnalyser();
 
-        analyser.fftSize = 512;
+
+        analyser.fftSize =
+            512;
+
+
+        analyser.smoothingTimeConstant =
+            0.75;
+
 
         microphone =
-            audioContext.createMediaStreamSource(stream);
+            audioContext
+                .createMediaStreamSource(
+                    microphoneStream
+                );
 
-        microphone.connect(analyser);
 
-        microphoneRunning = true;
+        microphone.connect(
+            analyser
+        );
+        microphoneRunning =
+            true;
 
         detectBlow();
 
-    }catch(error){
+    }
 
-        alert(
-            "Microphone permission was not available. " +
-            "You can use the button below to turn off the candles."
+    catch(error){
+
+        console.error(
+            "Microphone error:",
+            error
         );
 
+        alert(
+            "Microphone permission was not available. You can use the button below instead."
+        );
+
+        stopMicrophone();
+
     }
+
 }
 
 
+/* =========================================================
+   DETECT BLOW
+========================================================= */
+
 function detectBlow(){
 
-    if(!microphoneRunning || candlesBlown)
+    if(
+        !microphoneRunning ||
+        !analyser
+    ){
+
         return;
 
-    const data =
-        new Uint8Array(analyser.frequencyBinCount);
+    }
 
-    analyser.getByteFrequencyData(data);
+
+    const data =
+        new Uint8Array(
+            analyser.frequencyBinCount
+        );
+
+
+    analyser.getByteFrequencyData(
+        data
+    );
+
 
     let total = 0;
 
-    for(let i = 0; i < data.length; i++){
+
+    for(
+        let i = 0;
+        i < data.length;
+        i++
+    ){
+
         total += data[i];
+
     }
+
 
     const average =
         total / data.length;
 
+
     /*
-       Blow threshold.
-       You can lower 55 if the microphone
-       does not detect the blow.
+       If the microphone detects
+       a strong enough sound,
+       consider it a blow.
     */
 
     if(average > 55){
@@ -949,88 +2818,246 @@ function detectBlow(){
         blowCandles();
 
         return;
+
     }
 
-    requestAnimationFrame(detectBlow);
+
+    requestAnimationFrame(
+        detectBlow
+    );
+
 }
 
 
-/* ================= CONFETTI ================= */
+/* =========================================================
+   STOP MICROPHONE
+========================================================= */
+
+function stopMicrophone(){
+
+    microphoneRunning =
+        false;
+
+
+    if(microphoneStream){
+
+        microphoneStream
+            .getTracks()
+            .forEach(track => {
+
+                track.stop();
+
+            });
+
+        microphoneStream =
+            null;
+
+    }
+
+
+    if(audioContext){
+
+        try{
+
+            audioContext.close();
+
+        }
+
+        catch(error){
+
+            console.log(error);
+
+        }
+
+        audioContext =
+            null;
+
+    }
+
+
+    microphone =
+        null;
+
+    analyser =
+        null;
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
 
 function createConfetti(){
 
-    for(let i = 0; i < 100; i++){
+    for(
+        let i = 0;
+        i < 120;
+        i++
+    ){
 
         const piece =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        piece.className = "confetti";
+
+        piece.className =
+            "confetti";
+
+
+        piece.textContent =
+            Math.random() > .5
+            ? "•"
+            : "✦";
+
 
         piece.style.left =
             Math.random() * 100 + "vw";
 
+
+        piece.style.top =
+            "-20px";
+
+
+        piece.style.fontSize =
+            (10 + Math.random() * 16)
+            + "px";
+
+
         piece.style.animationDuration =
-            (2 + Math.random() * 4) + "s";
+            (2 + Math.random() * 4)
+            + "s";
+
 
         piece.style.animationDelay =
-            Math.random() * 1.5 + "s";
+            Math.random() * 2
+            + "s";
+
 
         piece.style.transform =
-            `rotate(${Math.random()*360}deg)`;
+            `rotate(${Math.random() * 360}deg)`;
 
-        document.body.appendChild(piece);
+
+        document.body.appendChild(
+            piece
+        );
+
 
         setTimeout(() => {
+
             piece.remove();
+
         }, 7000);
+
     }
+
 }
 
 
-/* ================= BALLOONS ================= */
+/* =========================================================
+   RANDOM CONFETTI SYMBOL
+========================================================= */
+
+function randomColor(){
+
+    const colors = [
+
+        "#ff4f81",
+        "#ffd166",
+        "#ffffff",
+        "#ff8fab",
+        "#cdb4db",
+        "#90dbf4",
+        "#b9fbc0"
+
+    ];
+
+
+    return colors[
+        Math.floor(
+            Math.random() *
+            colors.length
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   BALLOONS
+========================================================= */
 
 function createBalloons(){
 
-    const emojis = [
-        "🎈",
-        "🎈",
-        "🎈",
-        "🎈"
-    ];
-
-    for(let i = 0; i < 14; i++){
+    for(
+        let i = 0;
+        i < 18;
+        i++
+    ){
 
         const balloon =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        balloon.className = "balloon";
+
+        balloon.className =
+            "balloon";
+
 
         balloon.textContent =
-            emojis[Math.floor(Math.random()*emojis.length)];
+            Math.random() > .5
+            ? "🎈"
+            : "🎈";
+
 
         balloon.style.left =
             Math.random() * 100 + "vw";
 
+
+        balloon.style.bottom =
+            "-80px";
+
+
         balloon.style.fontSize =
-            (30 + Math.random()*25) + "px";
+            (30 + Math.random() * 30)
+            + "px";
+
 
         balloon.style.animationDuration =
-            (4 + Math.random()*4) + "s";
+            (5 + Math.random() * 5)
+            + "s";
 
-        document.body.appendChild(balloon);
+
+        balloon.style.animationDelay =
+            Math.random() * 2
+            + "s";
+
+
+        document.body.appendChild(
+            balloon
+        );
+
 
         setTimeout(() => {
+
             balloon.remove();
-        }, 8000);
+
+        }, 10000);
+
     }
+
 }
 
 
-/* ================= HEARTS ================= */
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
 
 function createHearts(){
 
-    const heartTypes = [
+    const heartSymbols = [
         "❤️",
         "💖",
         "💕",
@@ -1039,38 +3066,143 @@ function createHearts(){
         "💞"
     ];
 
-    for(let i = 0; i < 30; i++){
+
+    for(
+        let i = 0;
+        i < 35;
+        i++
+    ){
 
         const heart =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        heart.className = "heart";
+
+        heart.className =
+            "heart";
+
 
         heart.textContent =
-            heartTypes[
+            heartSymbols[
                 Math.floor(
-                    Math.random()*heartTypes.length
+                    Math.random() *
+                    heartSymbols.length
                 )
             ];
+
 
         heart.style.left =
             Math.random() * 100 + "vw";
 
-        heart.style.animationDuration =            (3 + Math.random()*4) + "s";
+
+        heart.style.fontSize =
+            (16 + Math.random() * 24)
+            + "px";
+
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 5)
+            + "s";
+
 
         heart.style.animationDelay =
-            Math.random() * 2 + "s";
+            Math.random() * 2
+            + "s";
 
-        document.body.appendChild(heart);
+
+        document.body.appendChild(
+            heart
+        );
+
 
         setTimeout(() => {
+
             heart.remove();
-        }, 8000);
+
+        }, 9000);
+
     }
+
+}
+
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+
+function createSparkles(){
+
+    const sparkleSymbols = [
+        "✨",
+        "⭐",
+        "💫",
+        "✦",
+        "🌟"
+    ];
+
+
+    for(
+        let i = 0;
+        i < 20;
+        i++
+    ){
+
+        const sparkle =
+            document.createElement(
+                "div"
+            );
+
+
+        sparkle.className =
+            "sparkle";
+
+
+        sparkle.textContent =
+            sparkleSymbols[
+                Math.floor(
+                    Math.random() *
+                    sparkleSymbols.length
+                )
+            ];
+
+
+        sparkle.style.left =
+            Math.random() * 100 + "vw";
+
+
+        sparkle.style.top =
+            Math.random() * 100 + "vh";
+
+
+        sparkle.style.fontSize =
+            (15 + Math.random() * 25)
+            + "px";
+
+
+        sparkle.style.animationDelay =
+            Math.random() * .8
+            + "s";
+
+
+        document.body.appendChild(
+            sparkle
+        );
+
+
+        setTimeout(() => {
+
+            sparkle.remove();
+
+        }, 2500);
+
+    }
+
 }
 
 </script>
 
 </body>
 </html>
+
       
