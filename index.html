@@ -1,392 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width,
-                   initial-scale=1.0,
-                   maximum-scale=1.0,
-                   user-scalable=no">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
 
-    <title>Happy Birthday Madzia ❤️</title>
+    <meta
+        name="theme-color"
+        content="#090414"
+    >
+
+    <title>Happy Birthday Madzia 🌙✨</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<div class="sky"></div>
-<div class="stars" id="stars"></div>
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div id="sky">
+
+    <div id="stars"></div>
+
+    <div id="shootingStars"></div>
+
+    <div id="sparkles"></div>
+
+    <div id="heartTrail"></div>
+
+</div>
 
 
-<!-- =====================================================
-     OPENING
-===================================================== -->
+<!-- =========================================================
+     MUSIC
+========================================================= -->
 
-<section class="screen active" id="opening">
+<audio
+    id="bgMusic"
+    preload="auto"
+    loop
+>
+    <source
+        src="Seppy_-_Enter_One_(mp3.pm).mp3"
+        type="audio/mpeg"
+    >
+</audio>
 
-    <div class="small-title">
-        A LITTLE SURPRISE ✨
+
+<button
+    id="musicToggle"
+    class="music-toggle"
+    onclick="toggleMusic()"
+    aria-label="Toggle music"
+>
+    🎵
+</button>
+
+
+<!-- =========================================================
+     MAIN APP
+========================================================= -->
+
+<main id="app">
+
+
+<!-- =========================================================
+     SCREEN 1 — OPENING
+========================================================= -->
+
+<section
+    id="opening"
+    class="screen active"
+>
+
+    <div class="opening-content">
+
+        <div class="opening-stars">
+            ✦
+        </div>
+
+        <div
+            id="openingGift"
+            class="gift"
+            onclick="enterBirthday()"
+        >
+            🎁
+        </div>
+
+        <h1>
+            Something special<br>
+            is waiting for you...
+        </h1>
+
+        <p class="opening-subtitle">
+            Tap the gift to enter 🌙
+        </p>
+
+        <button
+            class="primary-button"
+            onclick="enterBirthday()"
+        >
+            ✨ Enter
+        </button>
+
     </div>
-
-    <h1>For Madzia ❤️</h1>
-
-    <p>
-        Something small,
-        something special,
-        and something made
-        just for you. 🌙✨
-    </p>
-
-    <div class="gift" onclick="showScreen('memories')">
-
-        <div class="gift-lid"></div>
-        <div class="gift-box"></div>
-
-    </div>
-
-    <button class="btn"
-            onclick="showScreen('memories')">
-        Open your surprise 🎁
-    </button>
 
 </section>
 
 
-<!-- =====================================================
-     MEMORIES
-===================================================== -->
+<!-- =========================================================
+     SCREEN 2 — NIGHT SKY / MEMORIES
+========================================================= -->
 
-<section class="screen" id="memories">
+<section
+    id="memories"
+    class="screen"
+>
 
-    <div class="small-title">
-        OUR MEMORIES 💭
-    </div>
+    <div class="screen-content">
 
-    <h2>
-        Little moments became
-        big memories ❤️
-    </h2>
-
-    <div class="message-box">
-
-        <p>
-
-            The conversations...
-
-            <br><br>
-
-            The random laughs...
-
-            <br><br>
-
-            The days we spent
-            together...
-
-            <br><br>
-
-            And those beautiful nights
-            when we stayed awake
-            just for each other —
-            talking, laughing,
-            and doing the same little
-            things from different places. 🌙✨
-
-            <br><br>
-
-            Somehow those little moments
-            became some of the memories
-            I treasure the most. ❤️
-
-        </p>
-
-    </div>
-
-    <button class="btn"
-            onclick="showScreen('moon')">
-        Continue 🌙
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     MOON
-===================================================== -->
-
-<section class="screen" id="moon">
-
-    <div class="moon"></div>
-
-    <h2>
-        You are like the moon to me 🌙
-    </h2>
-
-    <div class="message-box">
-
-        <p>
-
-            There are billions of things
-            happening in this world...
-
-            <br><br>
-
-            Yet somehow,
-            you still manage to run
-            through my mind
-            24/7. ❤️
-
-            <br><br>
-
-            Just like the moon,
-            you have this way of making
-            even the darkest nights
-            feel a little brighter. ✨
-
-        </p>
-
-    </div>
-
-    <div class="number-love">
-
-        <div class="number-box">
-            <span class="number">24</span>
-            <span class="number-label">HOURS</span>
+        <div class="section-symbol">
+            🌌
         </div>
 
-        <div class="multiply">×</div>
+        <h2>
+            A Little Night Sky
+        </h2>
 
-        <div class="number-box">
-            <span class="number">7</span>
-            <span class="number-label">DAYS</span>
-        </div>
-
-    </div>
-
-    <button class="btn"
-            onclick="showScreen('confession')">
-
-        There's something I want to tell you... 💌
-
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     CONFESSION
-===================================================== -->
-
-<section class="screen" id="confession">
-
-    <div class="small-title">
-        SOMETHING I'VE WANTED TO SAY ❤️
-    </div>
-
-    <div class="confession-card">
-
-        <h2>Can I tell you something?</h2>
-
-        <p>
-
-            I've wanted to tell you this
-            for a long time...
-
-            <br><br>
-
-            But I never really knew
-            how you would feel about it,
-            and I never wanted to say it
-            in a way that might hurt you.
-
-            <br><br>
-
-            So I thought this might be
-            the best way to finally ask.
-
+        <p class="main-message">
+            Some memories are small...
+            <br>
+            but somehow they stay with us.
         </p>
 
-        <div class="question">
-            Do you want to know? 👀❤️
+        <p class="secondary-message">
+            Tap the sky.
+            <br>
+            Watch what happens. ✨
+        </p>
+
+        <div
+            id="memoryMessage"
+            class="interactive-message"
+        >
+            Touch the stars...
         </div>
 
-        <div class="answer-buttons"
-             id="answerButtons">
+        <div class="navigation-row">
 
-            <button class="yes-button"
-                    onclick="yesAnswer()">
-                YES ❤️
-            </button>
-
-            <button class="no-button"
-                    onclick="noAnswer()">
-                NO 🌸
+            <button
+                class="secondary-button"
+                onclick="showScreen('moon')"
+            >
+                🌙 Continue
             </button>
 
         </div>
 
-        <div class="reveal" id="yesReveal">
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SCREEN 3 — MOON / 24x7
+========================================================= -->
+
+<section
+    id="moon"
+    class="screen"
+>
+
+    <div class="screen-content">
+
+        <div
+            id="moonObject"
+            class="moon"
+            onclick="reactToMoon()"
+        >
+
+            <div class="moon-glow"></div>
+
+            <div class="moon-body">
+                🌕
+            </div>
+
+        </div>
+
+        <h2>
+            24 × 7
+        </h2>
+
+        <p class="main-message">
+            Not just for a moment.
+            <br>
+            Not just for today.
+        </p>
+
+        <div
+            id="moonMessage"
+            class="moon-message"
+        >
+            Tap the moon 🌙
+        </div>
+
+        <p class="secondary-message">
+            Some people make ordinary moments
+            feel a little more special.
+        </p>
+
+        <button
+            class="secondary-button"
+            onclick="showScreen('confession')"
+        >
+            💌 Continue
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SCREEN 4 — CONFESSION
+========================================================= -->
+
+<section
+    id="confession"
+    class="screen"
+>
+
+    <div class="screen-content confession-content">
+
+        <div class="section-symbol">
+            💌
+        </div>
+
+        <h2>
+            One Little Question
+        </h2>
+
+        <p class="main-message">
+            I have something to ask you...
+        </p>
+
+        <div class="question-card">
 
             <p>
-
-                Okay...
-
-                <br><br>
-
-                Here goes... 🥹❤️
-
-                <br><br>
-
-                There is someone I've been
-                thinking about more than
-                I probably should...
-
-                <br><br>
-
-                Someone who makes ordinary
-                days feel special.
-
-                <br><br>
-
-                Someone I love spending
-                my nights talking to. 🌙
-
-                <br><br>
-
-                And that person is...
-
+                Will you keep this little memory
+                somewhere in your heart? ❤️
             </p>
 
-            <div class="reveal-name">
+            <div class="answer-buttons">
 
-                MADZIA...
+                <button
+                    id="yesButton"
+                    class="yes-button"
+                    onclick="yesAnswer()"
+                >
+                    YES ❤️
+                </button>
 
-                <br>
-
-                IT'S YOUUU! ❤️
+                <button
+                    id="noButton"
+                    class="no-button"
+                    onclick="noAnswer()"
+                >
+                    NO
+                </button>
 
             </div>
 
-            <p>❤️ 💖 💕 💗 💓 💞</p>
-
         </div>
 
+        <div
+            id="confessionEnvelope"
+            class="envelope-container hidden"
+        >
 
-        <div class="reveal" id="noReveal">
+            <div
+                class="envelope"
+                onclick="openEnvelope()"
+            >
+
+                <div class="envelope-back"></div>
+
+                <div class="envelope-letter">
+                    💌
+                </div>
+
+                <div class="envelope-flap"></div>
+
+                <div class="envelope-front"></div>
+
+            </div>
 
             <p>
-
-                That's completely okay. 🌸❤️
-
-                <br><br>
-
-                You don't have to know
-                until you're ready.
-
-                <br><br>
-
-                Just remember...
-
-                <br><br>
-
-                someone thinks you're
-                pretty special. 🌙✨
-
+                Tap the envelope ✨
             </p>
 
         </div>
 
-    </div>
+        <div
+            id="letterReveal"
+            class="letter-reveal hidden"
+        >
 
-    <button class="btn"
+            <div class="letter-paper">
+
+                <div class="letter-decoration">
+                    ✦
+                </div>
+
+                <p>
+                    Some moments don't need
+                    a reason to become special.
+                </p>
+
+                <p>
+                    Sometimes it's simply because
+                    of the person who was there. 🌙
+                </p>
+
+                <div class="letter-decoration">
+                    ❤️
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
             id="confessionContinue"
-            style="display:none;"
-            onclick="showScreen('wishes')">
+            class="secondary-button hidden"
+            onclick="showScreen('wishes')"
+        >
+            ⭐ Six Wishes
+        </button>
 
-        Continue to your birthday surprise 🎂
-
-    </button>
+    </div>
 
 </section>
 
 
-<!-- =====================================================
-     WISHES
-===================================================== -->
+<!-- =========================================================
+     SCREEN 5 — SIX WISHES
+========================================================= -->
 
-<section class="screen" id="wishes">
+<section
+    id="wishes"
+    class="screen"
+>
 
-    <div class="small-title">
-        A FEW WISHES FOR YOU ⭐
+    <div class="screen-content">
+
+        <div class="section-symbol">
+            ⭐
+        </div>
+
+        <h2>
+            Six Little Wishes
+        </h2>
+
+        <p class="secondary-message">
+            Tap each star to reveal a wish.
+        </p>
+
+        <div
+            id="wishCounter"
+            class="wish-counter"
+        >
+            0 / 6
+        </div>
+
+        <div
+            id="wishStars"
+            class="wish-stars"
+        >
+
+            <button
+                class="wish-star"
+                onclick="showWish(0)"
+            >
+                ★
+            </button>
+
+            <button
+                class="wish-star"
+                onclick="showWish(1)"
+            >
+                ★
+            </button>
+
+            <button
+                class="wish-star"
+                onclick="showWish(2)"
+            >
+                ★
+            </button>
+
+            <button
+                class="wish-star"
+                onclick="showWish(3)"
+            >
+                ★
+            </button>
+
+            <button
+                class="wish-star"
+                onclick="showWish(4)"
+            >
+                ★
+            </button>
+
+            <button
+                class="wish-star"
+                onclick="showWish(5)"
+            >
+                ★
+            </button>
+
+        </div>
+
+        <div
+            id="wishDisplay"
+            class="wish-display"
+        >
+            Choose a star ✨
+        </div>
+
+        <div
+            id="secretStar"
+            class="secret-star hidden"
+            onclick="unlockSecretStar()"
+        >
+            🌠
+        </div>
+
+        <div
+            id="secretStarMessage"
+            class="secret-star-message hidden"
+        >
+            You found the secret shooting star. 🌠❤️
+        </div>
+
+        <button
+            id="wishesContinue"
+            class="secondary-button hidden"
+            onclick="showScreen('cake')"
+        >
+            🎂 Continue
+        </button>
+
     </div>
-
-    <h2>Pick a star ✨</h2>
-
-    <p>
-        Each one has a little wish hidden inside. ❤️
-    </p>
-
-    <div class="wish-stars">
-
-        <div class="wish-star" onclick="showWish(0)">⭐</div>
-        <div class="wish-star" onclick="showWish(1)">⭐</div>
-        <div class="wish-star" onclick="showWish(2)">⭐</div>
-        <div class="wish-star" onclick="showWish(3)">⭐</div>
-        <div class="wish-star" onclick="showWish(4)">⭐</div>
-        <div class="wish-star" onclick="showWish(5)">⭐</div>
-
-    </div>
-
-    <div class="wish-result" id="wishResult">
-        Tap a star ✨
-    </div>
-
-    <button class="btn"
-            onclick="showScreen('cake')">
-
-        Your cake is waiting... 🍓🎂
-
-    </button>
 
 </section>
 
 
-<!-- =====================================================
-     REALISTIC STRAWBERRY VANILLA CAKE
-===================================================== -->
+<!-- =========================================================
+     SCREEN 6 — CAKE
+========================================================= -->
 
-<section class="screen cake-screen" id="cake">
+<section
+    id="cake"
+    class="screen cake-screen"
+>
 
-    <div class="small-title">
-        MAKE A WISH ✨
-    </div>
+    <div class="cake-spotlight"></div>
 
-    <h2>
-        A little sweetness for someone sweet 🍓❤️
-    </h2>
+    <div class="screen-content cake-content">
 
-    <div class="cake-stage">
+        <div class="cake-title">
 
-        <div class="cake-shadow"></div>
+            <div class="section-symbol">
+                🎂
+            </div>
 
-        <div class="cake">
+            <h2>
+                A Cake For You
+            </h2>
 
-            <!-- Bottom sponge -->
+            <p>
+                Make a wish before the flames disappear...
+            </p>
 
-            <div class="cake-layer bottom-layer">
+        </div>
 
-                <div class="sponge-texture"></div>
+
+        <!-- Cake component -->
+
+        <div
+            id="cakeComponent"
+            class="cake-component"
+        >
+
+            <div class="cake-shadow"></div>
+
+            <div class="cake-base">
+
+                <div class="cake-top"></div>
+
+                <div class="cake-side"></div>
+
+                <div class="cake-strawberry-layer"></div>
+
+                <div class="cake-cream-layer"></div>
 
             </div>
 
 
-            <!-- Strawberry cream -->
-
-            <div class="cream-band cream-bottom">
+            <div class="cake-frosting">
 
                 <span></span>
                 <span></span>
@@ -397,228 +526,343 @@
             </div>
 
 
-            <!-- Middle sponge -->
+            <div class="strawberries">
 
-            <div class="cake-layer middle-layer">
+                <div class="strawberry strawberry-one">
+                    🍓
+                </div>
 
-                <div class="sponge-texture"></div>
+                <div class="strawberry strawberry-two">
+                    🍓
+                </div>
 
-            </div>
-
-
-            <!-- Strawberry cream -->
-
-            <div class="cream-band cream-middle">
-
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="strawberry strawberry-three">
+                    🍓
+                </div>
 
             </div>
 
-
-            <!-- Top sponge -->
-
-            <div class="cake-layer top-layer">
-
-                <div class="sponge-texture"></div>
-
-            </div>
-
-
-            <!-- White frosting -->
-
-            <div class="frosting">
-
-                <div class="frosting-drip drip1"></div>
-                <div class="frosting-drip drip2"></div>
-                <div class="frosting-drip drip3"></div>
-                <div class="frosting-drip drip4"></div>
-                <div class="frosting-drip drip5"></div>
-
-            </div>
-
-
-            <!-- Strawberry decorations -->
-
-            <div class="real-strawberry strawberry1">
-                <div class="berry-leaf"></div>
-            </div>
-
-            <div class="real-strawberry strawberry2">
-                <div class="berry-leaf"></div>
-            </div>
-
-            <div class="real-strawberry strawberry3">
-                <div class="berry-leaf"></div>
-            </div>
-
-            <div class="real-strawberry strawberry4">
-                <div class="berry-leaf"></div>
-            </div>
-
-
-            <!-- Strawberry slices -->
-
-            <div class="berry-slice slice1"></div>
-            <div class="berry-slice slice2"></div>
-
-
-            <!-- Name -->
 
             <div class="cake-name">
                 MADZIA
             </div>
 
 
-            <!-- Candles -->
-
             <div class="candles">
 
                 <div class="candle">
-                    <div class="wick"></div>
+
                     <div class="flame"></div>
-                    <div class="smoke"></div>
+
+                    <div class="candle-stick"></div>
+
                 </div>
 
                 <div class="candle">
-                    <div class="wick"></div>
+
                     <div class="flame"></div>
-                    <div class="smoke"></div>
+
+                    <div class="candle-stick"></div>
+
                 </div>
 
                 <div class="candle">
-                    <div class="wick"></div>
+
                     <div class="flame"></div>
-                    <div class="smoke"></div>
+
+                    <div class="candle-stick"></div>
+
                 </div>
 
             </div>
 
         </div>
 
-    </div>
 
-    <p>
-        Three candles.
-        One wish. 🕯️✨
-        <br>
-        Take a breath...
-        <br>
-        Then blow! 💨
-    </p>
-
-    <button class="blow-button"
-            onclick="startMic()">
-
-        🎤 Blow the candles
-
-    </button>
-
-    <button class="btn"
-            onclick="blowCandles()">
-
-        Tap if blowing doesn't work 🕯️
-
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     CELEBRATION
-===================================================== -->
-
-<section class="screen celebration-screen"
-         id="celebration">
-
-    <div class="celebration-content">
-
-        <div class="congrats">
-            CONGRATULATIONS! 🎉
-        </div>
-
-        <div class="birthday-big">
-            HAPPY BIRTHDAY,
+        <div
+            id="blowInstruction"
+            class="blow-instruction"
+        >
+            🌬️ Blow toward your microphone
             <br>
-            MADZIA ❤️🎂
+            or tap the cake to blow out the candles.
         </div>
+
+
+        <button
+            id="startMicButton"
+            class="secondary-button"
+            onclick="startMic()"
+        >
+            🎤 Start Candle Detection
+        </button>
+
+
+        <button
+            id="blowFallbackButton"
+            class="secondary-button hidden"
+            onclick="blowCandles()"
+        >
+            🕯️ Blow Out Candles
+        </button>
+
+
+        <div
+            id="cakeMessage"
+            class="cake-message"
+        ></div>
+
+
+        <button
+            id="cakeContinue"
+            class="primary-button hidden"
+            onclick="showScreen('celebration')"
+        >
+            🎉 Celebrate
+        </button>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     FINAL
-===================================================== -->
+<!-- =========================================================
+     SCREEN 7 — CELEBRATION
+========================================================= -->
 
-<section class="screen" id="final">
+<section
+    id="celebration"
+    class="screen celebration-screen"
+>
 
-    <div class="small-title">
-        ONE LAST THING ❤️
-    </div>
+    <div
+        id="celebrationEffects"
+        class="celebration-effects"
+    ></div>
 
-    <h2>
-        For all the memories ahead... 🌙
-    </h2>
+    <div class="screen-content">
 
-    <div class="final-text">
+        <div
+            id="celebrationEmoji"
+            class="celebration-emoji"
+        >
+            🎉
+        </div>
 
-        <p>
+        <h1>
+            HAPPY BIRTHDAY
+        </h1>
 
-            I hope this is only one
-            of many birthdays we get
-            to celebrate through all
-            the years and memories
-            still waiting for us. ❤️
+        <h2>
+            MADZIA ❤️
+        </h2>
 
-            <br><br>
-
-            Thank you for all the
-            little moments...
-
-            <br>
-            the conversations...
-            <br>
-            the laughs...
-            <br>
-            the late nights...
-            <br>
-            and everything in between. ✨
-
-            <br><br>
-
-            I want to keep being there,
-            enjoying the little things
-            with you, making more memories,
-            and seeing where life takes us
-            together. 🌙❤️
-
-            <br><br>
-
-            Keep smiling,
-            keep being you,
-            and never forget how special
-            you are. 💗
-
-            <br><br>
-
-            Happy Birthday once again,
-            Madzia. 🎂🌙❤️
-
+        <p class="main-message">
+            May your days be filled with
+            happiness, peace and beautiful memories.
         </p>
 
-        <div class="signature">
-            Made with lots of ❤️✨
-        </div>
+        <p class="secondary-message">
+            Today is your special day.
+            <br>
+            So let the sky celebrate with you. ✨
+        </p>
+
+        <button
+            class="secondary-button"
+            onclick="showScreen('secret')"
+        >
+            🔐 One Last Thing
+        </button>
 
     </div>
 
 </section>
 
+
+<!-- =========================================================
+     SCREEN 8 — SECRET MEMORY
+========================================================= -->
+
+<section
+    id="secret"
+    class="screen"
+>
+
+    <div class="screen-content">
+
+        <div class="section-symbol">
+            🔐
+        </div>
+
+        <h2>
+            A Secret Memory
+        </h2>
+
+        <p class="secondary-message">
+            If you really remember...
+        </p>
+
+        <div class="secret-question-card">
+
+            <p class="secret-question">
+                What colour was the shirt I was
+                wearing in the first photo
+                you saw of me?
+            </p>
+
+            <input
+                id="secretAnswer"
+                type="text"
+                autocomplete="off"
+                placeholder="Type the colour..."
+            >
+
+            <button
+                class="primary-button"
+                onclick="checkSecretAnswer()"
+            >
+                🔓 Verify Memory
+            </button>
+
+        </div>
+
+
+        <div
+            id="verification"
+            class="verification hidden"
+        >
+
+            <p>
+                🔐 VERIFYING MEMORY...
+            </p>
+
+            <p>
+                ✓ MEMORY FOUND
+            </p>
+
+            <p>
+                ✓ SECRET UNLOCKED
+            </p>
+
+        </div>
+
+
+        <div
+            id="secretMessage"
+            class="secret-message hidden"
+        >
+
+            <p>
+                You remembered the first photo… 👀❤️
+            </p>
+
+            <p>
+                Maybe that's proof that some
+                little moments are worth remembering
+                forever. 🌙✨
+            </p>
+
+        </div>
+
+
+        <button
+            id="finalContinue"
+            class="secondary-button hidden"
+            onclick="showScreen('final')"
+        >
+            🌙 Continue
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SCREEN 9 — FINAL
+========================================================= -->
+
+<section
+    id="final"
+    class="screen final-screen"
+>
+
+    <div class="final-stars"></div>
+
+    <div class="screen-content">
+
+        <div class="final-moon">
+            🌙
+        </div>
+
+        <h1>
+            Happy Birthday,
+        </h1>
+
+        <h2>
+            Madzia ❤️
+        </h2>
+
+        <p class="final-message">
+            May every new chapter bring
+            something beautiful.
+        </p>
+
+        <p class="final-message">
+            May your dreams find their way
+            toward you.
+        </p>
+
+        <p class="final-message">
+            And may this little memory
+            always make you smile. ✨
+        </p>
+
+        <div class="final-signature">
+            🌙 ✨ ❤️ ✨ 🌙
+        </div>
+
+        <p class="final-small">
+            Some moments are worth remembering.
+        </p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     GLOBAL EFFECT CONTAINERS
+========================================================= -->
+
+<div
+    id="floatingHearts"
+    class="floating-hearts"
+></div>
+
+<div
+    id="floatingSparkles"
+    class="floating-sparkles"
+></div>
+
+<div
+    id="confettiContainer"
+    class="confetti-container"
+></div>
+
+<div
+    id="balloonContainer"
+    class="balloon-container"
+></div>
+
+
+<!-- =========================================================
+     SCRIPT
+========================================================= -->
 
 <script src="script.js"></script>
 
