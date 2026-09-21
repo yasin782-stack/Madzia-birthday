@@ -1,10 +1,26 @@
 <div class="cake-component" id="birthdayCake">
-
   <div class="cake-spotlight"></div>
 
   <div class="cake-wrapper">
-
+    <div class="cake-plate"></div>
     <div class="candle-glow"></div>
+
+    <div class="cake-base">
+      <div class="cake-top"></div>
+
+      <div class="cake-frosting">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="strawberries">
+        <span class="strawberry">🍓</span>
+        <span class="strawberry">🍓</span>
+        <span class="strawberry">🍓</span>
+      </div>
+
+      <div class="cake-name">Madzia</div>
+    </div>
 
     <div class="candles">
       <div class="candle">
@@ -22,36 +38,6 @@
         <div class="candle-stick"></div>
       </div>
     </div>
-
-    <div class="cake-top">
-      <div class="cake-cream-layer"></div>
-
-      <div class="cake-frosting">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <div class="strawberries">
-        <span class="strawberry">🍓</span>
-        <span class="strawberry">🍓</span>
-        <span class="strawberry">🍓</span>
-      </div>
-
-      <div class="cake-name">MADZIA</div>
-    </div>
-
-    <div class="cake-base">
-      <div class="cake-side"></div>
-      <div class="cake-vanilla-layer"></div>
-      <div class="cake-strawberry-layer"></div>
-      <div class="cake-cream-layer cake-middle-cream"></div>
-    </div>
-
-    <div class="cake-plate"></div>
   </div>
 
   <div id="candleMessage" class="candle-message">
@@ -63,19 +49,11 @@
   </div>
 
   <div class="cake-controls">
-    <button
-      id="startMicButton"
-      class="cake-button"
-      type="button"
-      onclick="startMic()">
+    <button id="startMicButton" class="cake-button" type="button" onclick="startMic()">
       🎤 Blow Candles
     </button>
 
-    <button
-      id="blowFallbackButton"
-      class="cake-button secondary"
-      type="button"
-      onclick="blowCandles()">
+    <button id="blowFallbackButton" class="cake-button secondary" type="button" onclick="blowCandles()">
       ✨ Tap to Blow
     </button>
   </div>
@@ -84,12 +62,7 @@
     Happy Birthday, Madzia! 🎂✨
   </div>
 
-  <button
-    id="cakeContinue"
-    class="cake-continue"
-    type="button"
-    onclick="showScreen('celebration')">
+  <button id="cakeContinue" class="cake-continue" type="button" onclick="showScreen('celebration')">
     Continue ✨
   </button>
-
 </div>
