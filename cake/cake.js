@@ -1,411 +1,154 @@
+const cake = document.getElementById("birthdayCake");
+const flames = document.querySelectorAll("#birthdayCake .flame");
 
-/* =========================================================
-   MADZIA BIRTHDAY — CAKE JAVASCRIPT
-========================================================= */
+let blown = false;
 
+/* ---------- 3D CAKE ---------- */
 
-/* =========================================================
-   CAKE ELEMENTS
-========================================================= */
+function setupCake(){
+  if(!cake) return;
 
-const cakeComponent =
-    document.getElementById("birthdayCake");
+  const wrapper = cake.querySelector(".cake-wrapper");
 
-const cakeFlames =
-    document.querySelectorAll(
-        "#birthdayCake .flame"
-    );
+  cake.addEventListener("pointermove", e => {
+    if(!wrapper) return;
 
-const cakeCandles =
-    document.querySelectorAll(
-        "#birthdayCake .candle"
-    );
+    const r = cake.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - .5) * 8;
+    const y = ((e.clientY - r.top) / r.height - .5) * -6;
 
+    wrapper.style.transform =
+      `rotateX(${y}deg) rotateY(${x}deg)`;
+  });
 
-/* =========================================================
-   CAKE STATE
-========================================================= */
-
-let cakeReady = false;
-let cakeTiltX = 0;
-let cakeTiltY = 0;
-
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-function initializeCake() {
-
-    if (!cakeComponent) {
-        return;
-    }
-
-    cakeReady = true;
-
-    setupCakeTilt();
-
-    setupCakePointerEffects();
-
+  cake.addEventListener("pointerleave", () => {
+    if(wrapper)
+      wrapper.style.transform = "rotateX(0) rotateY(0)";
+  });
 }
 
+/* ---------- FLAME REACTION ---------- */
 
-/* =========================================================
-   3D CAKE TILT
-========================================================= */
+function reactFlamesToAir(intensity){
+  if(blown) return;
 
-function setupCakeTilt() {
+  intensity = Math.max(0,Math.min(1,intensity));
 
-    if (!cakeComponent) {
-        return;
-    }
+  flames.forEach((flame,i) => {
+    const direction = i % 2 ? 1 : -1;
+    const rotate = direction * intensity * 25;
+    const scale = 1 - intensity * .25;
 
-
-    cakeComponent.addEventListener(
-        "pointermove",
-        event => {
-
-            const wrapper =
-                cakeComponent.querySelector(
-                    ".cake-wrapper"
-                );
-
-            if (!wrapper) {
-                return;
-            }
-
-
-            const rect =
-                cakeComponent.getBoundingClientRect();
-
-
-            const x =
-                event.clientX -
-                rect.left;
-
-
-            const y =
-                event.clientY -
-                rect.top;
-
-
-            const centerX =
-                rect.width / 2;
-
-
-            const centerY =
-                rect.height / 2;
-
-
-            cakeTiltY =
-                ((x - centerX) / centerX) * 5;
-
-
-            cakeTiltX =
-                ((centerY - y) / centerY) * 4;
-
-
-            wrapper.style.transform =
-                `rotateX(${cakeTiltX}deg)
-                 rotateY(${cakeTiltY}deg)`;
-        }
-    );
-
-
-    cakeComponent.addEventListener(
-        "pointerleave",
-        () => {
-
-            const wrapper =
-                cakeComponent.querySelector(
-                    ".cake-wrapper"
-                );
-
-            if (!wrapper) {
-                return;
-            }
-
-
-            wrapper.style.transform =
-                "rotateX(0deg) rotateY(0deg)";
-        }
-    );
+    flame.style.transform =
+      `translateX(-50%) rotate(${rotate}deg) scaleX(${scale})`;
+  });
 }
 
+/* ---------- BLOW CANDLES ---------- */
 
-/* =========================================================
-   CAKE POINTER EFFECTS
-========================================================= */
+function blowCandles(){
+  if(blown) return;
 
-function setupCakePointerEffects() {
+  blown = true;
 
-    if (!cakeComponent) {
-        return;
-    }
+  flames.forEach((flame,i) => {
+    flame.classList.add("blown-out");
 
-
-    cakeComponent.addEventListener(
-        "pointerdown",
-        event => {
-
-            if (
-                event.target.closest(
-                    "button"
-                )
-            ) {
-                return;
-            }
-
-
-            createCakeSpark(
-                event.clientX,
-                event.clientY
-            );
-        }
-    );
-}
-
-
-/* =========================================================
-   CAKE SPARK
-========================================================= */
-
-function createCakeSpark(
-    x,
-    y
-) {
-
-    const spark =
-        document.createElement(
-            "span"
-        );
-
-    spark.className =
-        "cake-spark";
-
-    spark.textContent =
-        "✦";
-
-    spark.style.left =
-        x + "px";
-
-    spark.style.top =
-        y + "px";
-
-
-    document.body.appendChild(
-        spark
+    const smoke = document.createElement("span");
+    smoke.className = "smoke";
+    smoke.style.setProperty(
+      "--smoke-delay",
+      i * .15 + "s"
     );
 
+    flame.parentElement.appendChild(smoke);
+  });
 
-    setTimeout(() => {
+  const glow = cake.querySelector(".candle-glow");
+  if(glow) glow.style.opacity = "0";
 
-        spark.remove();
+  const instruction = document.getElementById("blowInstruction");
+  if(instruction)
+    instruction.textContent = "Wish made... ✨";
 
-    }, 900);
+  const candleMessage = document.getElementById("candleMessage");
+  if(candleMessage){
+    candleMessage.textContent =
+      "Make a wish... and let it shine. ✨";
+    candleMessage.classList.add("show");
+  }
+
+  const message = document.getElementById("cakeMessage");
+  if(message){
+    message.textContent =
+      "Happy Birthday, Madzia! 🎂❤️";
+    message.classList.add("show");
+  }
+
+  const micButton = document.getElementById("startMicButton");
+  const fallback = document.getElementById("blowFallbackButton");
+
+  if(micButton) micButton.disabled = true;
+  if(fallback) fallback.disabled = true;
+
+  setTimeout(() => {
+    const next = document.getElementById("cakeContinue");
+    if(next) next.classList.add("show");
+  },1200);
 }
 
+/* ---------- RESET ---------- */
 
-/* =========================================================
-   CANDLE FLAME REACTION
-========================================================= */
+function resetCakeFlames(){
+  blown = false;
 
-function reactFlamesToAir(
-    intensity
-) {
+  flames.forEach(flame => {
+    flame.classList.remove("blown-out");
+    flame.style.transform = "";
+  });
 
-    if (
-        !cakeFlames ||
-        cakeFlames.length === 0
-    ) {
-        return;
-    }
+  cake.querySelectorAll(".smoke").forEach(s => s.remove());
 
+  const glow = cake.querySelector(".candle-glow");
+  if(glow) glow.style.opacity = "";
 
-    const clamped =
-        Math.min(
-            Math.max(
-                intensity,
-                0
-            ),
-            1
-        );
-
-
-    cakeFlames.forEach(
-        (flame, index) => {
-
-            const direction =
-                index % 2 === 0
-                    ? -1
-                    : 1;
-
-
-            const rotation =
-                direction *
-                clamped *
-                22;
-
-
-            const scaleX =
-                1 -
-                clamped * 0.25;
-
-
-            const scaleY =
-                1 +
-                clamped * 0.25;
-
-
-            flame.style.transform =
-                `translateX(-50%)
-                 rotate(${rotation}deg)
-                 scale(${scaleX}, ${scaleY})`;
-        }
-    );
+  const next = document.getElementById("cakeContinue");
+  if(next) next.classList.remove("show");
 }
 
+/* ---------- EFFECT ---------- */
 
-/* =========================================================
-   RESET FLAMES
-========================================================= */
+function createCakeSpark(x,y){
+  const spark = document.createElement("span");
 
-function resetCakeFlames() {
+  spark.textContent = "✦";
+  spark.style.position = "fixed";
+  spark.style.left = x + "px";
+  spark.style.top = y + "px";
+  spark.style.zIndex = "50";
+  spark.style.pointerEvents = "none";
+  spark.style.fontSize = "20px";
 
-    cakeFlames.forEach(
-        flame => {
+  document.body.appendChild(spark);
 
-            flame.classList.remove(
-                "blown-out"
-            );
+  spark.animate(
+    [
+      {opacity:1,transform:"scale(.5)"},
+      {opacity:0,transform:"scale(2) translateY(-20px)"}
+    ],
+    {duration:800,easing:"ease-out"}
+  );
 
-
-            flame.style.transform =
-                "";
-        }
-    );
+  setTimeout(() => spark.remove(),800);
 }
 
-
-/* =========================================================
-   CAKE CELEBRATION GLOW
-========================================================= */
-
-function cakeCelebrationGlow() {
-
-    if (!cakeComponent) {
-        return;
-    }
-
-
-    cakeComponent.classList.add(
-        "cake-celebrating"
-    );
-
-
-    setTimeout(() => {
-
-        cakeComponent.classList.remove(
-            "cake-celebrating"
-        );
-
-    }, 2500);
-}
-
-
-/* =========================================================
-   CAKE MESSAGE HELPER
-========================================================= */
-
-function showCakeMessage(
-    message
-) {
-
-    const element =
-        document.getElementById(
-            "cakeMessage"
-        );
-
-    if (!element) {
-        return;
-    }
-
-
-    element.textContent =
-        message;
-
-
-    element.classList.add(
-        "show"
-    );
-}
-
-
-/* =========================================================
-   CAKE CONTINUE HELPER
-========================================================= */
-
-function enableCakeContinue() {
-
-    const button =
-        document.getElementById(
-            "cakeContinue"
-        );
-
-    if (!button) {
-        return;
-    }
-
-
-    button.classList.add(
-        "show"
-    );
-}
-
-
-/* =========================================================
-   GLOBAL CAKE HELPERS
-========================================================= */
+/* ---------- PUBLIC API ---------- */
 
 window.MadziaCake = {
-
-    spark: createCakeSpark,
-
-    reactFlames:
-        reactFlamesToAir,
-
-    resetFlames:
-        resetCakeFlames,
-
-    celebration:
-        cakeCelebrationGlow,
-
-    message:
-        showCakeMessage,
-
-    continue:
-        enableCakeContinue
-
+  reactFlamesToAir,
+  blowCandles,
+  resetCakeFlames,
+  createCakeSpark
 };
 
-
-/* =========================================================
-   INITIALIZE AFTER PAGE LOAD
-========================================================= */
-
-if (
-    document.readyState ===
-    "loading"
-) {
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        initializeCake
-    );
-
-}
-else {
-
-    initializeCake();
-
-}
+setupCake();
