@@ -23,13 +23,20 @@ let micActive = false;
 /* ---------- SCREEN ---------- */
 
 function showScreen(id){
-  screens.forEach(s => s.classList.remove("active"));
+  screens.forEach(screen => screen.classList.remove("active"));
+
   const screen = $(id);
+  if(!screen) return;
 
-  if(screen) screen.classList.add("active");
+  screen.classList.add("active");
 
-  if(id === "cake") loadCake();
-  if(id === "celebration") celebration();
+  if(id === "cake"){
+    loadCake();
+  }
+
+  if(id === "celebration"){
+    celebration();
+  }
 }
 
 /* ---------- MUSIC ---------- */
@@ -39,7 +46,9 @@ function toggleMusic(){
   if(!music) return;
 
   if(music.paused){
-    music.play().then(() => musicStarted = true).catch(() => {});
+    music.play()
+      .then(() => musicStarted = true)
+      .catch(() => {});
   }else{
     music.pause();
   }
@@ -49,7 +58,9 @@ function enterBirthday(){
   const music = $("bgMusic");
 
   if(music && !musicStarted){
-    music.play().then(() => musicStarted = true).catch(() => {});
+    music.play()
+      .then(() => musicStarted = true)
+      .catch(() => {});
   }
 
   showScreen("memories");
@@ -63,10 +74,12 @@ function createStars(){
 
   for(let i = 0; i < 90; i++){
     const star = document.createElement("span");
+
     star.className = "star";
     star.style.left = Math.random() * 100 + "%";
     star.style.top = Math.random() * 100 + "%";
     star.style.animationDelay = Math.random() * 3 + "s";
+
     container.appendChild(star);
   }
 }
@@ -76,12 +89,14 @@ function shootingStar(){
   if(!container) return;
 
   const star = document.createElement("span");
+
   star.className = "shooting-star";
   star.style.left = 80 + Math.random() * 20 + "%";
   star.style.top = Math.random() * 45 + "%";
 
   container.appendChild(star);
-  setTimeout(() => star.remove(), 1300);
+
+  setTimeout(() => star.remove(),1300);
 }
 
 function createSparkle(x,y){
@@ -89,47 +104,63 @@ function createSparkle(x,y){
   if(!container) return;
 
   const spark = document.createElement("span");
+
   spark.className = "spark";
   spark.style.left = x + "px";
   spark.style.top = y + "px";
 
   container.appendChild(spark);
-  setTimeout(() => spark.remove(), 1500);
+
+  setTimeout(() => spark.remove(),1500);
 }
 
 /* ---------- TOUCH EFFECTS ---------- */
 
 function createHeart(x,y){
+  const container = $("floatingHearts");
+  if(!container) return;
+
   const heart = document.createElement("span");
+
   heart.className = "heart";
   heart.textContent = "❤️";
   heart.style.left = x + "px";
   heart.style.top = y + "px";
 
-  $("floatingHearts").appendChild(heart);
-  setTimeout(() => heart.remove(), 1800);
+  container.appendChild(heart);
+
+  setTimeout(() => heart.remove(),1800);
 }
 
 function createTrailHeart(x,y){
+  const container = $("heartTrail");
+  if(!container) return;
+
   const heart = document.createElement("span");
+
   heart.className = "trail-heart";
   heart.textContent = "♥";
   heart.style.left = x + "px";
   heart.style.top = y + "px";
 
-  $("heartTrail").appendChild(heart);
-  setTimeout(() => heart.remove(), 800);
+  container.appendChild(heart);
+
+  setTimeout(() => heart.remove(),800);
 }
 
-document.addEventListener("click", e => {
-  if(e.target.closest("button,input,.envelope,#cakeMount")) return;
+document.addEventListener("click",event => {
+  if(event.target.closest("button,input,.envelope,#cakeMount")){
+    return;
+  }
 
-  createHeart(e.clientX,e.clientY);
-  createSparkle(e.clientX,e.clientY);
+  createHeart(event.clientX,event.clientY);
+  createSparkle(event.clientX,event.clientY);
 });
 
-document.addEventListener("pointermove", e => {
-  if(e.buttons) createTrailHeart(e.clientX,e.clientY);
+document.addEventListener("pointermove",event => {
+  if(event.buttons){
+    createTrailHeart(event.clientX,event.clientY);
+  }
 });
 
 /* ---------- MOON ---------- */
@@ -138,83 +169,125 @@ function reactToMoon(){
   const moon = $("moonObject");
   const message = $("moonMessage");
 
+  if(!moon || !message) return;
+
   moon.classList.add("reacted");
 
   message.textContent = "The moon noticed you. 🌙✨";
 
   for(let i = 0; i < 8; i++){
     setTimeout(() => {
+      const rect = moon.getBoundingClientRect();
+
       createSparkle(
-        moon.getBoundingClientRect().left +
-        Math.random() * moon.offsetWidth,
-        moon.getBoundingClientRect().top +
-        Math.random() * moon.offsetHeight
+        rect.left + Math.random() * rect.width,
+        rect.top + Math.random() * rect.height
       );
-    }, i * 100);
+    },i * 100);
   }
 
-  setTimeout(() => moon.classList.remove("reacted"),700);
+  setTimeout(() => {
+    moon.classList.remove("reacted");
+  },700);
 }
 
 /* ---------- CONFESSION ---------- */
 
 function openEnvelope(){
-  $("confessionEnvelope").classList.add("opened");
-  $("letterReveal").classList.remove("hidden");
+  const envelope = $("confessionEnvelope");
+  const letter = $("letterReveal");
+
+  if(!envelope || !letter) return;
+
+  envelope.classList.add("opened");
+  letter.classList.remove("hidden");
 }
 
 function yesAnswer(){
-  $("answerMessage").textContent =
-    "Then let's keep this little memory. ❤️✨";
+  const message = $("answerMessage");
+  const next = $("confessionContinue");
 
-  $("confessionContinue").classList.remove("hidden");
+  if(message){
+    message.textContent =
+      "Then let's keep this little memory. ❤️✨";
+  }
+
+  if(next){
+    next.classList.remove("hidden");
+  }
 }
 
 function noAnswer(){
-  $("answerMessage").textContent =
-    "That's okay. The memory can still stay here. 🌙";
+  const message = $("answerMessage");
+  const next = $("confessionContinue");
 
-  $("confessionContinue").classList.remove("hidden");
+  if(message){
+    message.textContent =
+      "That's okay. The memory can still stay here. 🌙";
+  }
+
+  if(next){
+    next.classList.remove("hidden");
+  }
 }
 
 /* ---------- WISHES ---------- */
 
 function showWish(index){
+  if(index < 0 || index >= wishes.length) return;
+
   const stars = document.querySelectorAll(".wish-star");
+  const display = $("wishDisplay");
+  const counter = $("wishCounter");
 
-  if(stars[index].classList.contains("used")) return;
+  if(!display || !counter) return;
 
-  stars[index].classList.add("used");
-  wishCount++;
+  if(!stars[index].classList.contains("used")){
+    stars[index].classList.add("used");
+    wishCount++;
+  }
 
-  $("wishCounter").textContent = wishCount + " / 6";
-  $("wishDisplay").textContent = wishes[index];
+  display.textContent = wishes[index];
+  counter.textContent = wishCount + " / 6";
 
-  createHeart(
-    window.innerWidth / 2,
-    window.innerHeight / 2
-  );
+  for(let i = 0; i < 5; i++){
+    setTimeout(() => {
+      createSparkle(
+        window.innerWidth / 2 + (Math.random() - .5) * 180,
+        window.innerHeight / 2 + (Math.random() - .5) * 100
+      );
+    },i * 100);
+  }
 
   if(wishCount === 6){
-    setTimeout(() => {
-      $("secretStar").classList.remove("hidden");
-    },800);
+    const secretStar = $("secretStar");
+
+    if(secretStar){
+      secretStar.classList.remove("hidden");
+    }
   }
 }
 
 function unlockSecretStar(){
-  $("secretStarMessage").textContent =
-    "You found the little secret hidden among the stars. 🌠❤️";
+  const message = $("secretStarMessage");
+  const next = $("wishesContinue");
 
-  $("wishesContinue").classList.remove("hidden");
+  if(message){
+    message.textContent =
+      "A secret shooting star appeared just for this moment. 🌠✨";
+  }
 
-  for(let i = 0; i < 15; i++){
+  for(let i = 0; i < 12; i++){
     setTimeout(() => {
       createSparkle(
-        Math.random() * window.innerWidth,
-        Math.random() * window.innerHeight
+        window.innerWidth / 2 + (Math.random() - .5) * 200,
+        window.innerHeight / 2 + (Math.random() - .5) * 150
       );
-    },i * 70);
+    },i * 80);
+  }
+
+  if(next){
+    next.classList.remove("hidden");
   }
 }
 
@@ -228,23 +301,26 @@ async function loadCake(){
 
   try{
     const response = await fetch("cake/cake.html");
-    if(!response.ok) throw new Error("Cake component not found");
+
+    if(!response.ok){
+      throw new Error("Cake HTML could not be loaded.");
+    }
 
     mount.innerHTML = await response.text();
 
-    await new Promise((resolve,reject) => {
-      const script = document.createElement("script");
-      script.src = "cake/cake.js";
-      script.onload = resolve;
-      script.onerror = reject;
-      document.body.appendChild(script);
-    });
+    const script = document.createElement("script");
+    script.src = "cake/cake.js";
 
-    cakeLoaded = true;
+    script.onload = () => {
+      cakeLoaded = true;
+    };
+
+    document.body.appendChild(script);
+
   }catch(error){
+    console.error("Cake loading error:",error);
     mount.innerHTML =
-      "<p>Unable to load the birthday cake. Please refresh the page.</p>";
-    console.error(error);
+      "<p>Sorry, the birthday cake could not load. 🎂</p>";
   }
 }
 
@@ -254,34 +330,49 @@ async function startMic(){
   if(micActive) return;
 
   try{
-    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+    micStream = await navigator.mediaDevices.getUserMedia({
+      audio:true
+    });
 
-    audioContext = new (window.AudioContext ||
-      window.webkitAudioContext)();
+    audioContext =
+      new (window.AudioContext || window.webkitAudioContext)();
 
-    const source = audioContext.createMediaStreamSource(micStream);
+    const source =
+      audioContext.createMediaStreamSource(micStream);
 
     analyser = audioContext.createAnalyser();
     analyser.fftSize = 512;
 
     source.connect(analyser);
+
     micActive = true;
 
-    const data = new Uint8Array(analyser.fftSize);
-    detectBlow(data);
+    const button = $("startMicButton");
+
+    if(button){
+      button.textContent = "🎤 Listening...";
+      button.disabled = true;
+    }
+
+    detectBlow();
+
   }catch(error){
-    console.error(error);
+    console.error("Microphone error:",error);
 
     const instruction = $("blowInstruction");
+
     if(instruction){
       instruction.textContent =
-        "Microphone unavailable — use the button below.";
+        "Microphone unavailable — use Tap to Blow ✨";
     }
   }
 }
 
-function detectBlow(data){
+function detectBlow(){
   if(!micActive || !analyser) return;
+
+  const data =
+    new Uint8Array(analyser.fftSize);
 
   analyser.getByteTimeDomainData(data);
 
@@ -292,23 +383,18 @@ function detectBlow(data){
     total += value * value;
   }
 
-  const volume = Math.sqrt(total / data.length);
-
-  if(window.MadziaCake?.reactFlamesToAir){
-    window.MadziaCake.reactFlamesToAir(
-      Math.min(volume * 4,1)
-    );
-  }
+  const volume =
+    Math.sqrt(total / data.length);
 
   if(volume > .20){
     blowCandles();
     return;
   }
 
-  requestAnimationFrame(() => detectBlow(data));
+  requestAnimationFrame(detectBlow);
 }
 
-function blowCandles(){
+function stopMic(){
   micActive = false;
 
   if(micStream){
@@ -321,28 +407,60 @@ function blowCandles(){
     audioContext = null;
   }
 
+  analyser = null;
+}
+
+/* ---------- BLOW CANDLES ---------- */
+
+function blowCandles(){
+  stopMic();
+
   if(window.MadziaCake?.blowCandles){
     window.MadziaCake.blowCandles();
-  }else{
-    document.querySelectorAll(".flame").forEach(flame => {
-      flame.classList.add("blown-out");
-    });
+    return;
+  }
 
-    document.querySelectorAll(".candle").forEach(candle => {
-      const smoke = document.createElement("span");
-      smoke.className = "smoke";
-      candle.appendChild(smoke);
-    });
+  /* Fallback if cake.js did not load */
+
+  const flames =
+    document.querySelectorAll("#birthdayCake .flame");
+
+  flames.forEach((flame,index) => {
+    flame.classList.add("blown-out");
+
+    const smoke = document.createElement("span");
+
+    smoke.className = "smoke";
+    smoke.style.setProperty(
+      "--smoke-delay",
+      index * .15 + "s"
+    );
+
+    flame.parentElement.appendChild(smoke);
+  });
+
+  const glow =
+    document.querySelector("#birthdayCake .candle-glow");
+
+  if(glow){
+    glow.style.opacity = "0";
   }
 
   const message = $("cakeMessage");
 
   if(message){
-    message.textContent = "Happy Birthday, Madzia! 🎂❤️";
-    message.classList.remove("hidden");
+    message.textContent =
+      "Happy Birthday, Madzia! 🎂❤️";
+    message.classList.add("show");
   }
 
-  setTimeout(() => showScreen("celebration"),2200);
+  const next = $("cakeContinue");
+
+  if(next){
+    setTimeout(() => {
+      next.classList.add("show");
+    },1200);
+  }
 }
 
 /* ---------- CELEBRATION ---------- */
@@ -360,8 +478,8 @@ function createConfetti(){
 
   for(let i = 0; i < 80; i++){
     const piece = document.createElement("span");
-    piece.className = "confetti";
 
+    piece.className = "confetti";
     piece.style.left = Math.random() * 100 + "%";
     piece.style.top = -20 - Math.random() * 50 + "px";
     piece.style.background =
@@ -381,8 +499,8 @@ function createBalloons(){
 
   for(let i = 0; i < 12; i++){
     const balloon = document.createElement("span");
-    balloon.className = "balloon";
 
+    balloon.className = "balloon";
     balloon.style.left = Math.random() * 100 + "%";
     balloon.style.background =
       `hsl(${Math.random() * 360},75%,65%)`;
@@ -397,11 +515,17 @@ function createBalloons(){
 
 function checkSecretAnswer(){
   const input = $("secretAnswer");
-  const answer = input.value.trim().toUpperCase();
   const verification = $("verification");
   const message = $("secretMessage");
+  const next = $("finalContinue");
+
+  if(!input || !verification || !message) return;
+
+  const answer =
+    input.value.trim().toUpperCase();
 
   if(answer === SECRET_ANSWER){
+
     verification.innerHTML =
       "🔐 VERIFYING MEMORY...<br>" +
       "✓ MEMORY FOUND<br>" +
@@ -412,11 +536,20 @@ function checkSecretAnswer(){
       "Maybe that's proof that some little moments are worth " +
       "remembering forever. 🌙✨";
 
-    $("finalContinue").classList.remove("hidden");
+    if(next){
+      next.classList.remove("hidden");
+    }
+
   }else{
+
     verification.textContent =
       "❌ Memory not found. Try again.";
+
     message.textContent = "";
+
+    if(next){
+      next.classList.add("hidden");
+    }
   }
 }
 
