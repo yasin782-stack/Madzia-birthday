@@ -1,193 +1,95 @@
-<!-- =========================================================
-     MADZIA BIRTHDAY — CAKE COMPONENT
-========================================================= -->
-
 <div class="cake-component" id="birthdayCake">
 
-    <!-- Cake spotlight -->
-    <div class="cake-spotlight"></div>
+  <div class="cake-spotlight"></div>
 
+  <div class="cake-wrapper">
 
-    <!-- =====================================================
-         CAKE
-    ====================================================== -->
+    <div class="candle-glow"></div>
 
-    <div class="cake-wrapper">
+    <div class="candles">
+      <div class="candle">
+        <div class="flame"></div>
+        <div class="candle-stick"></div>
+      </div>
 
-        <!-- Candle glow -->
-        <div class="candle-glow"></div>
+      <div class="candle">
+        <div class="flame"></div>
+        <div class="candle-stick"></div>
+      </div>
 
-
-        <!-- Candles -->
-        <div class="candles">
-
-            <div class="candle">
-                <div class="flame"></div>
-                <div class="candle-stick"></div>
-            </div>
-
-            <div class="candle">
-                <div class="flame"></div>
-                <div class="candle-stick"></div>
-            </div>
-
-            <div class="candle">
-                <div class="flame"></div>
-                <div class="candle-stick"></div>
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             CAKE TOP
-        ================================================== -->
-
-        <div class="cake-top">
-
-            <!-- Cream -->
-            <div class="cake-cream-layer"></div>
-
-            <!-- Frosting -->
-            <div class="cake-frosting">
-
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-
-
-            <!-- Strawberries -->
-            <div class="strawberries">
-
-                <span class="strawberry">
-                    🍓
-                </span>
-
-                <span class="strawberry">
-                    🍓
-                </span>
-
-                <span class="strawberry">
-                    🍓
-                </span>
-
-            </div>
-
-
-            <!-- Name -->
-            <div class="cake-name">
-                MADZIA
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             CAKE BODY
-        ================================================== -->
-
-        <div class="cake-base">
-
-            <div class="cake-side"></div>
-
-            <!-- Vanilla layer -->
-            <div class="cake-vanilla-layer"></div>
-
-            <!-- Strawberry layer -->
-            <div class="cake-strawberry-layer"></div>
-
-            <!-- Cream layer -->
-            <div class="cake-cream-layer cake-middle-cream"></div>
-
-        </div>
-
-
-        <!-- Cake plate -->
-        <div class="cake-plate"></div>
-
+      <div class="candle">
+        <div class="flame"></div>
+        <div class="candle-stick"></div>
+      </div>
     </div>
 
+    <div class="cake-top">
+      <div class="cake-cream-layer"></div>
 
-    <!-- =====================================================
-         CANDLE MESSAGE
-    ====================================================== -->
+      <div class="cake-frosting">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-    <div
-        id="candleMessage"
-        class="candle-message"
-    >
-        Make a wish... ✨
+      <div class="strawberries">
+        <span class="strawberry">🍓</span>
+        <span class="strawberry">🍓</span>
+        <span class="strawberry">🍓</span>
+      </div>
+
+      <div class="cake-name">MADZIA</div>
     </div>
 
-
-    <!-- =====================================================
-         MIC INSTRUCTION
-    ====================================================== -->
-
-    <div
-        id="blowInstruction"
-        class="blow-instruction"
-    >
-        Blow gently toward your microphone 🎤
+    <div class="cake-base">
+      <div class="cake-side"></div>
+      <div class="cake-vanilla-layer"></div>
+      <div class="cake-strawberry-layer"></div>
+      <div class="cake-cream-layer cake-middle-cream"></div>
     </div>
 
+    <div class="cake-plate"></div>
+  </div>
 
-    <!-- =====================================================
-         CONTROLS
-    ====================================================== -->
+  <div id="candleMessage" class="candle-message">
+    Make a wish... ✨
+  </div>
 
-    <div class="cake-controls">
+  <div id="blowInstruction" class="blow-instruction">
+    Blow gently toward your microphone 🎤
+  </div>
 
-        <button
-            id="startMicButton"
-            class="cake-button"
-            type="button"
-            onclick="startMic()"
-        >
-            🎤 Blow Candles
-        </button>
-
-
-        <button
-            id="blowFallbackButton"
-            class="cake-button secondary"
-            type="button"
-            onclick="blowCandles()"
-        >
-            ✨ Tap to Blow
-        </button>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAKE MESSAGE
-    ====================================================== -->
-
-    <div
-        id="cakeMessage"
-        class="cake-message"
-    >
-        Happy Birthday, Madzia! 🎂✨
-    </div>
-
-
-    <!-- =====================================================
-         CONTINUE
-    ====================================================== -->
-
+  <div class="cake-controls">
     <button
-        id="cakeContinue"
-        class="cake-continue"
-        type="button"
-        onclick="showScreen('celebration')"
-    >
-        Continue ✨
+      id="startMicButton"
+      class="cake-button"
+      type="button"
+      onclick="startMic()">
+      🎤 Blow Candles
     </button>
 
+    <button
+      id="blowFallbackButton"
+      class="cake-button secondary"
+      type="button"
+      onclick="blowCandles()">
+      ✨ Tap to Blow
+    </button>
   </div>
+
+  <div id="cakeMessage" class="cake-message">
+    Happy Birthday, Madzia! 🎂✨
+  </div>
+
+  <button
+    id="cakeContinue"
+    class="cake-continue"
+    type="button"
+    onclick="showScreen('celebration')">
+    Continue ✨
+  </button>
+
+</div>
